@@ -4,11 +4,13 @@ using System.Collections;
 public class AdvanceSkill : MonoBehaviour {
 
 	public Animator anim;
+	public SkillType trype;
 	public Controller controller;
 	public BUTTON[] key;
 	public string stateName;
 	public bool ignoreGravity;
 	private bool changeState;
+	public bool OnAir;
 	public int state;
 	public float time;
 
@@ -17,20 +19,21 @@ public class AdvanceSkill : MonoBehaviour {
 	}
 
 	void Update () {
-		if (anim.GetBool ("Combo"+stateName)) {
-			anim.SetBool ("Combo" + stateName, false);
-
-		}
-		if (controller.GetButtonDown(key[state])) {
-			state++;
-			time = 0.5f;
-			if (state == key.Length) {
-				anim.Play (stateName);
-				state = 0;
-				anim.SetBool ("OnMove", true);
-				anim.SetBool ("IgnoreGravity", true);
-				anim.SetBool ("Combo"+stateName,true);
-				anim.SetBool ("Combo" + stateName, true);
+		if (OnAir != anim.GetBool ("OnGround")) {
+			if (anim.GetBool ("Combo" + stateName)) {
+				anim.SetBool ("Combo" + stateName, false);
+			}
+			if (controller.GetButtonDown (key [state])) {
+				state++;
+				time = 0.5f;
+				if (state == key.Length) {
+					anim.Play (stateName);
+					state = 0;
+					anim.SetBool ("OnMove", true);
+					anim.SetBool ("IgnoreGravity", true);
+					anim.SetBool ("Combo" + stateName, true);
+					anim.SetBool ("Combo" + stateName, true);
+				}
 			}
 		}
 		if (time > 0) {
