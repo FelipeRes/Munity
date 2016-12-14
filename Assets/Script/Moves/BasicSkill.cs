@@ -9,7 +9,6 @@ public class BasicSkill : MonoBehaviour {
 	public string stateName;
 	public bool ignoreGravity;
 	public SkillType type;
-	public SkillHeight height;
 	private bool changeState;
 
 	void Start(){
