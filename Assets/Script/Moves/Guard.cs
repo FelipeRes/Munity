@@ -9,9 +9,14 @@ public class Guard : MonoBehaviour {
 
 	void Update () {
 		if (enemyAnimator.GetBool ("OnMove") && controller.GetButton (BUTTON.LEFT)) {
-			animator.SetBool ("OnGuard", true);
+			if (controller.GetButton (BUTTON.DOWN)) {
+				animator.SetBool ("OnGuardDown", true);
+			} else {
+				animator.SetBool ("OnGuard", true);
+			}
 		} else {
 			animator.SetBool ("OnGuard", false);
+			animator.SetBool ("OnGuardDown", false);
 		}
 	
 	}
