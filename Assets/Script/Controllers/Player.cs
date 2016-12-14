@@ -66,7 +66,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 			moveDirection.y = 0;
-			if (!anim.GetBool ("OnMove")) {
+			if (!anim.GetBool ("OnMove") && (anim.GetCurrentAnimatorStateInfo(0).IsName("JumpFoward") ||anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") ||anim.GetCurrentAnimatorStateInfo(0).IsName("JumpBack"))) {
 				if (anim.GetBool ("Jump")) {
 					moveDirection.y = jumpForce;
 				}
