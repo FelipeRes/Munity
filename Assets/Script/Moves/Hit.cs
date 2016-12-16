@@ -8,6 +8,5 @@ public class Hit : MonoBehaviour {
 	public SkillHeight height;
 	public Vector2 recuo;
 	public Vector2 recuoNoAr;
-	public Animator anim;
 	public GameObject hitEffect;
 }
