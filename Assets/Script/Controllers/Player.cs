@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
 	public static float GroundReference = 4;
+	public int id;
 	public Animator anim;
 	public GameObject enemy;
 	public int direction;
@@ -17,6 +18,12 @@ public class Player : MonoBehaviour {
 
 	void Start(){
 		Player.time = 1;
+		anim.SetInteger ("Id", id);
+		this.tag = "P" + id.ToString ();
+		Hit[] l = GetComponentsInChildren<Hit> ();
+		foreach (Hit h in l) {
+			h.tag = "P" + id.ToString ();
+		}
 	}
 
 	void Update(){

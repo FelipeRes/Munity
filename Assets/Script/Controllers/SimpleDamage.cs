@@ -8,6 +8,9 @@ public class SimpleDamage : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.GetComponent<Hit> () != null) {
 			Hit hit = coll.gameObject.GetComponent<Hit> ();
+			if (hit.tag == this.tag) {
+				return;
+			}
 			if (anim.GetBool ("OnGuard")) {
 				if (hit.height == SkillHeight.Simple || hit.height == SkillHeight.Overhead) {
 					ShowHitEffect (coll, guardParticle);

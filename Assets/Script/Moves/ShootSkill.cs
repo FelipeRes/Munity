@@ -12,9 +12,9 @@ public class ShootSkill : MonoBehaviour {
 	}
 	void Update(){
 		if (active && projectilObject != null) {
-			Instantiate (projectilObject, this.transform.position, Quaternion.identity);
-			projectil.direction = player.direction;
-			Debug.Log ("Invoca");
+			GameObject proj =  Instantiate (projectilObject, this.transform.position, Quaternion.identity) as GameObject;
+			proj.GetComponent<ProjectilHit> ().direction = player.direction;
+			proj.GetComponent<ProjectilHit> ().hit.gameObject.tag = player.tag;
 			projectilObject = null;
 		}
 		if (!active) {
