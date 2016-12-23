@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
 	public Vector2 moveDirection;
 	public float gravity;
 	public float speed;
-	public float jumpForce;
 	public bool groundTouch;
 	public static float time;
 
@@ -44,8 +43,10 @@ public class Player : MonoBehaviour {
 			this.transform.position = new Vector2 (this.transform.position.x, -GroundReference);
 			if (enemy.transform.position.x > this.transform.position.x) {
 				sprite.transform.localScale = new Vector2 (1, 1);
+				direction = 1;
 			} else {
 				sprite.transform.localScale = new Vector2 (-1, 1);
+				direction = -1;
 			}
 			if (groundTouch == false) {
 				moveDirection = Vector2.zero;
@@ -54,11 +55,6 @@ public class Player : MonoBehaviour {
 		}
 
 		//DEFINE DIRECTION====================================================================================//
-		if (enemy.transform.position.x > this.transform.position.x) {
-			direction = 1;
-		} else {
-			direction = -1;
-		}
 		if (!anim.GetBool ("OnGround")) {
 			groundTouch = false;
 		}
@@ -72,18 +68,7 @@ public class Player : MonoBehaviour {
 					moveDirection.x = 0;
 				}
 			}
-			moveDirection.y = 0;
-			if (!anim.GetBool ("OnMove") && (anim.GetCurrentAnimatorStateInfo(0).IsName("JumpFoward") ||anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") ||anim.GetCurrentAnimatorStateInfo(0).IsName("JumpBack"))) {
-				if (anim.GetBool ("Jump")) {
-					moveDirection.y = jumpForce;
-				}
-				if (anim.GetBool ("JumpFoward")) {
-					moveDirection.x = speed*direction;
-				}
-				if (anim.GetBool ("JumpBack")) {
-					moveDirection.x = -speed*direction;
-				}
-			}
+			//moveDirection.y = 0;
 		} else {
 			moveDirection.y -= gravity * Time.deltaTime * Player.time;
 		}

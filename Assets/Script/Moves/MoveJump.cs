@@ -5,26 +5,37 @@ public class MoveJump : MonoBehaviour {
 
 	public Animator anim;
 	public Controller controller;
-	public BUTTON[] key;
-	public string stateName;
+	//public BUTTON[] key;
+	public string jump;
+	public string jumpFoward;
+	public string jumpBack;
 	public Vector2 force;
+	public Player player;
 
 	void Start(){
 		controller = this.GetComponent<Controller> ();
+		player = this.GetComponent<Player> ();
 	}
 
 	void FixedUpdate () {
-		if (CheckComand() && anim.GetBool ("OnGround")) {
-			anim.SetBool (stateName, CheckComand());
-		} 
-		anim.SetBool (stateName, CheckComand());
-	}
-	bool CheckComand(){
-		for (int i = 0; i < key.Length; i++) {
-			if (controller.GetButton(key[i]) == false) {
-				return false;
+		anim.SetBool (jump, controller.GetButton(BUTTON.UP));
+		anim.SetBool (jumpFoward, controller.GetButton(BUTTON.UP)&&controller.GetButton(BUTTON.RIGHT));
+		anim.SetBool (jumpBack, controller.GetButton(BUTTON.UP)&&controller.GetButton(BUTTON.LEFT));
+		if (!anim.GetBool ("OnMove") && anim.GetBool("OnGround")) {
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Jump")) {
+				player.moveDirection.y = force.y;
 			}
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("JumpFoward")) {
+				player.moveDirection.y = force.y;
+				player.moveDirection.x = force.x*player.direction;
+			}
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("JumpBack")) {
+				player.moveDirection.y = force.y;
+				player.moveDirection.x = -force.x*player.direction;
+			}
+			anim.SetBool ("OnGround", true);
 		}
-		return true;
+
 	}
+
 }
