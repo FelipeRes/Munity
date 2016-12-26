@@ -27,11 +27,12 @@ public class AdvanceSkill : MonoBehaviour {
 				state++;
 				time = 0.5f;
 				if (state == key.Length) {
-					anim.Play (stateName);
+					if (!anim.GetBool ("OnMove")) {
+						anim.Play (stateName);
+						anim.SetBool ("OnMove", true);
+						anim.SetBool ("IgnoreGravity", true);
+					}
 					state = 0;
-					anim.SetBool ("OnMove", true);
-					anim.SetBool ("IgnoreGravity", true);
-					anim.SetBool ("Combo" + stateName, true);
 					anim.SetBool ("Combo" + stateName, true);
 				}
 			}
