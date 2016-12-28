@@ -8,7 +8,7 @@ public class Guard : MonoBehaviour {
 	public Controller controller;
 
 	void Update () {
-		if (enemyAnimator.GetBool ("OnMove") && controller.GetButton (BUTTON.LEFT)) {
+		if (enemyAnimator.GetBool ("OnMove") && controller.GetButton (BUTTON.LEFT) && !animator.GetBool("OnStun")) {
 			if (controller.GetButton (BUTTON.DOWN)) {
 				animator.SetBool ("OnGuardDown", true);
 			} else {

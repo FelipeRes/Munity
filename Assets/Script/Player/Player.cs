@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
 	public float speed;
 	public bool groundTouch;
 	public static float time;
+	public int life;
+	public int gauge;
 
 	void Start(){
 		Player.time = 1;

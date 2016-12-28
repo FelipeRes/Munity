@@ -5,6 +5,9 @@ public class SimpleDamage : MonoBehaviour {
 
 	public Animator anim;
 	public GameObject guardParticle;
+	public int HitCount;
+	public Player player;
+
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.GetComponent<Hit> () != null) {
 			Hit hit = coll.gameObject.GetComponent<Hit> ();
@@ -35,6 +38,15 @@ public class SimpleDamage : MonoBehaviour {
 		Player.time = 1;
 	}
 	void ApplyDamage(Collider2D coll, Hit hit){
+		player.life -= hit.damage;
+		player.enemy.GetComponent<Player> ().gauge += hit.gauge;
+		if (anim.GetBool ("OnStun")) {
+			HitCount++;
+			CancelInvoke ("hitCount");
+			Invoke ("hitCount", 2);
+		} else {
+			HitCount = 1;
+		}
 		ShowHitEffect (coll, hit.hitEffect);
 		PushCharacter(hit);
 		if (hit.derrubar) {
@@ -42,6 +54,9 @@ public class SimpleDamage : MonoBehaviour {
 		} else {
 			anim.SetTrigger ("Hit");
 		}
+		anim.SetBool ("OnStun", true);
+		CancelInvoke ("stunReturn");
+		Invoke ("stunReturn", hit.stunTime);
 	}
 
 	void ShowHitEffect(Collider2D coll, GameObject particle){
@@ -69,12 +84,12 @@ public class SimpleDamage : MonoBehaviour {
 		} else {
 			this.GetComponent<Player> ().moveDirection = airVetor;
 		}
-		anim.SetBool ("OnStun", true);
-		CancelInvoke ("stunReturn");
-		Invoke ("stunReturn", hit.stunTime);
 		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);
 	}
 	void stunReturn(){
 		anim.SetBool ("OnStun", false);
+	}
+	void hitCount(){
+		HitCount = 0;
 	}
 }
