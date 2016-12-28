@@ -33,7 +33,6 @@ public class MoveJump : MonoBehaviour {
 				player.moveDirection.y = force.y;
 				player.moveDirection.x = -force.x*player.direction;
 			}
-			anim.SetBool ("OnGround", true);
 		}
 
 	}

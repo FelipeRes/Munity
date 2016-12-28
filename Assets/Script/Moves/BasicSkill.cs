@@ -27,7 +27,7 @@ public class BasicSkill : MonoBehaviour {
 		if (type == SkillType.Default) {
 			if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == false) {
 				anim.SetBool ("Combo"+stateName, controller.GetButtonDown(key));
-				if (controller.GetButtonDown(key) && !anim.GetBool ("OnMove")) {
+				if (controller.GetButtonDown(key) && !anim.GetBool ("OnMove")&& !anim.GetBool ("Jump")) {
 					anim.Play (stateName);
 				}
 			}

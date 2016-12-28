@@ -69,6 +69,12 @@ public class SimpleDamage : MonoBehaviour {
 		} else {
 			this.GetComponent<Player> ().moveDirection = airVetor;
 		}
+		anim.SetBool ("OnStun", true);
+		CancelInvoke ("stunReturn");
+		Invoke ("stunReturn", hit.stunTime);
 		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);
+	}
+	void stunReturn(){
+		anim.SetBool ("OnStun", false);
 	}
 }
