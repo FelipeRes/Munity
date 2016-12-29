@@ -30,7 +30,7 @@ public class SimpleDamage : MonoBehaviour {
 				ApplyDamage(coll,hit);
 			}
 			Player.time = 0;
-			Invoke ("Return", 0.1f);
+			Invoke ("Return", hit.stopTime);
 		}
 	}
 

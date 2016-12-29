@@ -8,6 +8,7 @@ public class Hit : MonoBehaviour {
 	public bool derrubar;
 	public SkillHeight height;
 	public float stunTime;
+	public float stopTime;
 	public Vector2 recuo;
 	public Vector2 recuoNoAr;
 	public GameObject hitEffect;

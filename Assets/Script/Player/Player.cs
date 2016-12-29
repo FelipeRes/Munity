@@ -14,8 +14,8 @@ public class Player : MonoBehaviour {
 	public float speed;
 	public bool groundTouch;
 	public static float time;
-	public int life;
-	public int gauge;
+	public float life;
+	public float gauge;
 
 	void Start(){
 		Player.time = 1;
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour {
 		//CONFIGURE PHYSICS===================================================================================================//
 		if (anim.GetBool ("OnGround")) {
 			if (moveDirection.x != 0) {
-				moveDirection.x -= Time.deltaTime * moveDirection.x*10;
+				moveDirection.x -= Time.deltaTime * moveDirection.x*7;
 				if (moveDirection.x <= 0.016f && moveDirection.x >= -0.016f) {
 					moveDirection.x = 0;
 				}

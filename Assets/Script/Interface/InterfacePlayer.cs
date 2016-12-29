@@ -16,10 +16,10 @@ public class InterfacePlayer : MonoBehaviour {
 
 	void Update () {
 		lifebar.value = player.life / lifeFactor;
-		if (gauge.value >= 1) {
-			gauge.value = 1;
+		if (player.gauge >= gaugeFactor) {
+			gauge.value = 1f;
 		} else {
-			gauge.value =  player.gauge/ gaugeFactor;
+			gauge.value =  (float)(player.gauge/ gaugeFactor);
 		}
 		if (player.enemy.GetComponent<SimpleDamage>().HitCount < 2) {
 			hitCount.text = "";
