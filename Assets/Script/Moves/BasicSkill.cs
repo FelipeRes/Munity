@@ -20,6 +20,9 @@ public class BasicSkill : MonoBehaviour {
 			anim.SetBool ("OnMove", true);
 			changeState = true;
 		}
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName (stateName)) {
+			anim.SetBool ("OnMove", true);
+		}
 		if (changeState == true && !anim.GetCurrentAnimatorStateInfo (0).IsName (stateName)) {
 			anim.SetBool ("OnMove", false);
 			changeState = false;
