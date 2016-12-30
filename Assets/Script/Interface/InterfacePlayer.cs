@@ -12,6 +12,7 @@ public class InterfacePlayer : MonoBehaviour {
 	public float lifeFactor;
 	public float gaugeFactor;
 	void Start () {
+		player = this.GetComponent<Player> ();
 	}
 
 	void Update () {

@@ -27,7 +27,7 @@ public class AdvanceSkill : MonoBehaviour {
 				state++;
 				time = 0.5f;
 				if (state == key.Length) {
-					if (!anim.GetBool ("OnMove")) {
+					if (!anim.GetBool ("OnMove") && !anim.GetBool("OnStun")) {
 						anim.Play (stateName);
 						anim.SetBool ("OnMove", true);
 						anim.SetBool ("IgnoreGravity", true);

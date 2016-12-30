@@ -27,27 +27,29 @@ public class BasicSkill : MonoBehaviour {
 			anim.SetBool ("OnMove", false);
 			changeState = false;
 		}
-		if (type == SkillType.Default) {
-			if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == false) {
-				anim.SetBool ("Combo"+stateName, controller.GetButtonDown(key));
-				if (controller.GetButtonDown(key) && !anim.GetBool ("OnMove")&& !anim.GetBool ("Jump")) {
-					anim.Play (stateName);
+		if (!anim.GetBool ("OnGuard") && !anim.GetBool ("OnGuardDown")) {
+			if (type == SkillType.Default && !anim.GetBool ("OnStun")) {
+				if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == false) {
+					anim.SetBool ("Combo" + stateName, controller.GetButtonDown (key));
+					if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove") && !anim.GetBool ("Jump")) {
+						anim.Play (stateName);
+					}
 				}
 			}
-		}
-		if (type == SkillType.OnAir) {
-			if (anim.GetBool ("OnGround") == false && anim.GetBool ("Crounch") == false) {
-				anim.SetBool ("Combo"+stateName, controller.GetButtonDown(key));
-				if (controller.GetButtonDown(key) && !anim.GetBool ("OnMove")) {
-					anim.Play (stateName);
+			if (type == SkillType.OnAir && !anim.GetBool ("OnStun")) {
+				if (anim.GetBool ("OnGround") == false && anim.GetBool ("Crounch") == false) {
+					anim.SetBool ("Combo" + stateName, controller.GetButtonDown (key));
+					if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove")) {
+						anim.Play (stateName);
+					}
 				}
 			}
-		}
-		if (type == SkillType.Crounch) {
-			if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == true) {
-				anim.SetBool ("Combo"+stateName,controller.GetButtonDown(key));
-				if (controller.GetButtonDown(key) && !anim.GetBool ("OnMove")) {
-					anim.Play (stateName);
+			if (type == SkillType.Crounch && !anim.GetBool ("OnStun")) {
+				if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == true) {
+					anim.SetBool ("Combo" + stateName, controller.GetButtonDown (key));
+					if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove")) {
+						anim.Play (stateName);
+					}
 				}
 			}
 		}

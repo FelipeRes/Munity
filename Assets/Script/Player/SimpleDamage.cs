@@ -17,12 +17,20 @@ public class SimpleDamage : MonoBehaviour {
 			if (anim.GetBool ("OnGuard")) {
 				if (hit.height == SkillHeight.Simple || hit.height == SkillHeight.Overhead) {
 					ShowHitEffect (coll, guardParticle);
+					player.PushCharacter(hit);
+					if(player.anim.GetBool("OnWall")){
+						hit.player.PushCharacter(hit);
+					}
 				} else {
 					ApplyDamage(coll,hit);
 				}
 			} else if (anim.GetBool ("OnGuardDown")) {
 				if (hit.height == SkillHeight.Simple || hit.height == SkillHeight.Sweep) {
 					ShowHitEffect (coll, guardParticle);
+					player.PushCharacter(hit);
+					if(player.anim.GetBool("OnWall")){
+						hit.player.PushCharacter(hit);
+					}
 				} else {
 					ApplyDamage(coll,hit);
 				}
@@ -48,7 +56,10 @@ public class SimpleDamage : MonoBehaviour {
 			HitCount = 1;
 		}
 		ShowHitEffect (coll, hit.hitEffect);
-		PushCharacter(hit);
+		if(player.anim.GetBool("OnWall")){
+			hit.player.SimplePushCharacter(hit);
+		}
+		player.PushCharacter(hit);
 		if (hit.derrubar) {
 			anim.Play ("Derrubar");
 		} else {
@@ -72,20 +83,6 @@ public class SimpleDamage : MonoBehaviour {
 		Destroy (hitEffect, 1);
 	}
 
-	void PushCharacter(Hit hit){
-		Vector2 vetor = new Vector2 ();
-		Vector2 airVetor = new Vector2 ();
-		vetor = hit.recuo;
-		airVetor = hit.recuoNoAr;
-		vetor.x *= -this.GetComponent<Player> ().direction;
-		airVetor.x *= -this.GetComponent<Player> ().direction;
-		if (anim.GetBool ("OnGround")) {
-			this.GetComponent<Player> ().moveDirection = vetor;
-		} else {
-			this.GetComponent<Player> ().moveDirection = airVetor;
-		}
-		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);
-	}
 	void stunReturn(){
 		anim.SetBool ("OnStun", false);
 	}

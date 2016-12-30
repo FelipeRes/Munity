@@ -1,44 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Controller : MonoBehaviour {
-
-	public KeyCode Up;
-	public KeyCode Left;
-	public KeyCode Right;
-	public KeyCode Down;
-	public KeyCode A;
-	public KeyCode B;
-	public KeyCode C;
-	public KeyCode X;
-	public KeyCode Y;
-	public KeyCode Z;
-	public Player player;
+public class JoystickController : Controller {
 
 	void Start(){
 		player = this.GetComponent<Player> ();
 	}
 
-	public virtual bool GetButton(BUTTON button){
+	public override bool GetButton(BUTTON button){
 		if (button == BUTTON.UP) {
-			return Input.GetKey (Up);
+			if (Input.GetAxis ("Vertical") == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		if (button == BUTTON.LEFT) {
 			if (player.direction == 1) {
-				return Input.GetKey (Left);
+				if (Input.GetAxis ("Horizontal") == -1) {
+					return true;
+				} else {
+					return false;
+				}	
 			} else {
-				return Input.GetKey (Right);
+				if (Input.GetAxis ("Horizontal") == 1) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 		if (button == BUTTON.RIGHT) {
 			if (player.direction == 1) {
-				return Input.GetKey (Right);
+				if (Input.GetAxis ("Horizontal") == 1) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
-				return Input.GetKey (Left);
+				if (Input.GetAxis ("Horizontal") == -1) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 		if (button == BUTTON.DOWN) {
-			return Input.GetKey (Down);
+			if (Input.GetAxis ("Vertical") == -1) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		if (button == BUTTON.A) {
 			return Input.GetKey (A);
@@ -60,26 +72,50 @@ public class Controller : MonoBehaviour {
 		}
 		return false;
 	}
-	public virtual bool GetButtonDown(BUTTON button){
+	public override bool GetButtonDown(BUTTON button){
 		if (button == BUTTON.UP) {
-			return Input.GetKeyDown (Up);
+			if (Input.GetAxis ("Vertical") == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		if (button == BUTTON.LEFT) {
 			if (player.direction == 1) {
-				return Input.GetKeyDown (Left);
+				if (Input.GetAxis ("Horizontal") == -1) {
+					return true;
+				} else {
+					return false;
+				}	
 			} else {
-				return Input.GetKeyDown (Right);
+				if (Input.GetAxis ("Horizontal") == 1) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 		if (button == BUTTON.RIGHT) {
 			if (player.direction == 1) {
-				return Input.GetKeyDown (Right);
+				if (Input.GetAxis ("Horizontal") == 1) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
-				return Input.GetKeyDown (Left);
+				if (Input.GetAxis ("Horizontal") == -1) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 		if (button == BUTTON.DOWN) {
-			return Input.GetKeyDown (Down);
+			if (Input.GetAxis ("Vertical") == -1) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		if (button == BUTTON.A) {
 			return Input.GetKeyDown (A);

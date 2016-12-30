@@ -16,13 +16,53 @@ Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.Networking
 Loading C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.080 seconds
+- Completed reload, in  0.114 seconds
 Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.880071 ms
+UnloadTime: 1.542477 ms
+NullReferenceException: Object reference not set to an instance of an object
+  at SimpleDamage.OnTriggerEnter2D (UnityEngine.Collider2D coll) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SimpleDamage.OnTriggerEnter2D (UnityEngine.Collider2D coll) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SimpleDamage.OnTriggerEnter2D (UnityEngine.Collider2D coll) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SimpleDamage.OnTriggerEnter2D (UnityEngine.Collider2D coll) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SimpleDamage.OnTriggerEnter2D (UnityEngine.Collider2D coll) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SimpleDamage.OnTriggerEnter2D (UnityEngine.Collider2D coll) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SimpleDamage.OnTriggerEnter2D (UnityEngine.Collider2D coll) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SimpleDamage.OnTriggerEnter2D (UnityEngine.Collider2D coll) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 145c -> priority: 1 
+  Thread -> id: b78 -> priority: 1 

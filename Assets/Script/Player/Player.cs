@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 	public static float GroundReference = 4;
 	public int id;
 	public Animator anim;
+	public GameObject wallSensor;
 	public GameObject enemy;
 	public int direction;
 	public GameObject sprite;
@@ -34,10 +35,16 @@ public class Player : MonoBehaviour {
 		this.transform.position += sprite.transform.localPosition;
 		sprite.transform.localPosition = Vector2.zero;
 		Vector2 myPos = this.transform.position;
+		Vector2 myPosWall = wallSensor.transform.position;
 		if (Physics2D.Linecast (myPos, myPos + Vector2.down*0.016f,  1 << LayerMask.NameToLayer("Ground"))) {
 			anim.SetBool ("OnGround", true);
 		}else {
 			anim.SetBool ("OnGround", false);
+		}
+		if (Physics2D.Linecast (myPosWall, myPosWall + Vector2.left*0.016f,  1 << LayerMask.NameToLayer("Wall"))) {
+			anim.SetBool ("OnWall", true);
+		}else {
+			anim.SetBool ("OnWall", false);
 		}
 
 		//GROUND DETECTION CONFIGURATION ====================================================================================//
@@ -78,5 +85,29 @@ public class Player : MonoBehaviour {
 			moveDirection = Vector2.zero;
 		}
 		this.transform.Translate (moveDirection*Time.deltaTime*Player.time);
+	}
+
+	//=========================================================================================//
+	public void PushCharacter(Hit hit){
+		Vector2 vetor = new Vector2 ();
+		Vector2 airVetor = new Vector2 ();
+		vetor = hit.recuo;
+		airVetor = hit.recuoNoAr;
+		vetor.x *= -this.GetComponent<Player> ().direction;
+		airVetor.x *= -this.GetComponent<Player> ().direction;
+		if (anim.GetBool ("OnGround")) {
+			this.GetComponent<Player> ().moveDirection = vetor;
+		} else {
+			this.GetComponent<Player> ().moveDirection = airVetor;
+		}
+		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);
+	}
+	public void SimplePushCharacter(Hit hit){
+		Vector2 vetor = new Vector2 ();
+		vetor = hit.recuo;
+		vetor.x *= -this.GetComponent<Player> ().direction;
+		vetor.y = 0;
+		this.GetComponent<Player> ().moveDirection = vetor;
+		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);
 	}
 }

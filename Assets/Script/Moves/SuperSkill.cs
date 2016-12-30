@@ -29,7 +29,7 @@ public class SuperSkill : MonoBehaviour {
 				state++;
 				time = 0.5f;
 				if (state == key.Length) {
-					if (player.gauge >= gauge) {
+					if (player.gauge >= gauge && !anim.GetBool("OnStun")) {
 						player.gauge -= gauge;
 						anim.Play (stateName);
 						anim.SetBool ("OnMove", true);

@@ -3,21 +3,26 @@ using System.Collections;
 
 public class Guard : MonoBehaviour {
 
-	public Animator animator;
+	public Animator anim;
 	public Animator enemyAnimator;
 	public Controller controller;
 
+	void Start(){
+		controller = this.GetComponent<Controller> ();
+	}
+
 	void Update () {
-		if (enemyAnimator.GetBool ("OnMove") && controller.GetButton (BUTTON.LEFT) && !animator.GetBool("OnStun")) {
+		if (enemyAnimator.GetBool ("OnMove") && controller.GetButton (BUTTON.LEFT) && !anim.GetBool("OnStun")) {
 			if (controller.GetButton (BUTTON.DOWN)) {
-				animator.SetBool ("OnGuardDown", true);
+				anim.SetBool ("OnGuardDown", true);
 			} else {
-				animator.SetBool ("OnGuard", true);
+				anim.SetBool ("OnGuard", true);
 			}
 		} else {
-			animator.SetBool ("OnGuard", false);
-			animator.SetBool ("OnGuardDown", false);
+			anim.SetBool ("OnGuard", false);
+			anim.SetBool ("OnGuardDown", false);
 		}
 	
 	}
+
 }
