@@ -18,7 +18,7 @@ public class SimpleDamage : MonoBehaviour {
 				if (hit.height == SkillHeight.Simple || hit.height == SkillHeight.Overhead) {
 					ShowHitEffect (coll, guardParticle);
 					player.PushCharacter(hit);
-					if(player.anim.GetBool("OnWall")){
+					if(player.anim.GetBool("OnWall") && hit.player.anim.GetBool("OnGround")){
 						hit.player.PushCharacter(hit);
 					}
 				} else {
@@ -28,7 +28,7 @@ public class SimpleDamage : MonoBehaviour {
 				if (hit.height == SkillHeight.Simple || hit.height == SkillHeight.Sweep) {
 					ShowHitEffect (coll, guardParticle);
 					player.PushCharacter(hit);
-					if(player.anim.GetBool("OnWall")){
+					if(player.anim.GetBool("OnWall") && hit.player.anim.GetBool("OnGround")){
 						hit.player.PushCharacter(hit);
 					}
 				} else {
@@ -56,7 +56,7 @@ public class SimpleDamage : MonoBehaviour {
 			HitCount = 1;
 		}
 		ShowHitEffect (coll, hit.hitEffect);
-		if(player.anim.GetBool("OnWall")){
+		if(player.anim.GetBool("OnWall") && hit.player.anim.GetBool("OnGround")){
 			hit.player.SimplePushCharacter(hit);
 		}
 		player.PushCharacter(hit);
