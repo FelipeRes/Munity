@@ -80,6 +80,9 @@ public class SimpleDamage : MonoBehaviour {
 			pos += coll.offset;
 		}
 		GameObject hitEffect = Instantiate (particle, pos, Quaternion.identity) as GameObject;
+		if (this.GetComponent<Player> ().direction == 1) {
+			hitEffect.transform.localScale=new Vector3(-1,1,1);
+		}
 		Destroy (hitEffect, 1);
 	}
 

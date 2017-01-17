@@ -33,6 +33,7 @@ public class BasicSkill : MonoBehaviour {
 					anim.SetBool ("Combo" + stateName, controller.GetButtonDown (key));
 					if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove") && !anim.GetBool ("Jump")) {
 						anim.Play (stateName);
+						Debug.Log ("Soco");
 					}
 				}
 			}
