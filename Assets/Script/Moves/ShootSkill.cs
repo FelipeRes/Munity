@@ -15,6 +15,7 @@ public class ShootSkill : MonoBehaviour {
 			GameObject proj =  Instantiate (projectilObject, this.transform.position, Quaternion.identity) as GameObject;
 			proj.GetComponent<ProjectilHit> ().direction = player.direction;
 			proj.GetComponent<ProjectilHit> ().hit.gameObject.tag = player.tag;
+			proj.GetComponent<ProjectilHit> ().hit.player = player;
 			projectilObject = null;
 		}
 		if (!active) {

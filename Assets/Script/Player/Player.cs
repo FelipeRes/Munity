@@ -18,6 +18,8 @@ public class Player : MonoBehaviour {
 	public float life;
 	public float gauge;
 
+	public List<BoxCollider2D> colliderList;
+
 	void Start(){
 		Player.time = 1;
 		anim.SetInteger ("Id", id);
@@ -25,6 +27,12 @@ public class Player : MonoBehaviour {
 		Hit[] l = GetComponentsInChildren<Hit> ();
 		foreach (Hit h in l) {
 			h.tag = "P" + id.ToString ();
+		}
+		BoxCollider2D[] lista = sprite.GetComponentsInChildren<BoxCollider2D> ();
+		for(int i = 0; i<lista.Length; i++){
+			if (lista [i].gameObject.layer == 8) {
+				colliderList.Add (lista [i]);
+			}
 		}
 	}
 
@@ -109,5 +117,13 @@ public class Player : MonoBehaviour {
 		vetor.y = 0;
 		this.GetComponent<Player> ().moveDirection = vetor;
 		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);
+	}
+	public bool CheckMove(){
+		for (int i = 0; i < colliderList.Count; i++) {
+			if (colliderList [i].isActiveAndEnabled) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
