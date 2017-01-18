@@ -5,25 +5,17 @@ public class Guard : MonoBehaviour {
 
 	public Animator anim;
 	public Player player;
-	public Animator enemyAnimator;
+	public Player enemy;
 	public Controller controller;
 
 	void Start(){
+		player = this.GetComponent<Player> ();
+		enemy = player.enemy.GetComponent<Player> ();
 		controller = this.GetComponent<Controller> ();
 	}
 
 	void Update () {
-		/*if (enemyAnimator.GetBool ("OnMove") && controller.GetButton (BUTTON.LEFT) && !anim.GetBool("OnStun")) {
-			if (controller.GetButton (BUTTON.DOWN)) {
-				anim.SetBool ("OnGuardDown", true);
-			} else {
-				anim.SetBool ("OnGuard", true);
-			}
-		} else {
-			anim.SetBool ("OnGuard", false);
-			anim.SetBool ("OnGuardDown", false);
-		}*/
-		if ( player.CheckMove() && controller.GetButton (BUTTON.LEFT) && !anim.GetBool("OnStun")) {
+		if ( enemy.CheckMove() && controller.GetButton (BUTTON.LEFT) && !anim.GetBool("OnStun")  && !anim.GetBool("OnMove")) {
 			if (controller.GetButton (BUTTON.DOWN)) {
 				anim.SetBool ("OnGuardDown", true);
 			} else {

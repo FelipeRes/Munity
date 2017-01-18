@@ -8,6 +8,10 @@ public class SimpleDamage : MonoBehaviour {
 	public int HitCount;
 	public Player player;
 
+	void Start(){
+		player = this.GetComponent<Player> ();
+	}
+
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.GetComponent<Hit> () != null) {
 			Hit hit = coll.gameObject.GetComponent<Hit> ();

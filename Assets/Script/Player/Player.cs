@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	public Animator anim;
 	public GameObject wallSensor;
 	public GameObject enemy;
+	public GameObject playerBox;
 	public int direction;
 	public GameObject sprite;
 	public Vector2 moveDirection;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour {
 		foreach (Hit h in l) {
 			h.tag = "P" + id.ToString ();
 		}
+		playerBox.tag = "P" + id.ToString ();
 		BoxCollider2D[] lista = sprite.GetComponentsInChildren<BoxCollider2D> ();
 		for(int i = 0; i<lista.Length; i++){
 			if (lista [i].gameObject.layer == 8) {
