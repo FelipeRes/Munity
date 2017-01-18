@@ -15,10 +15,6 @@ public class Controller : MonoBehaviour {
 	public KeyCode Z;
 	public Player player;
 
-	void Start(){
-		player = this.GetComponent<Player> ();
-	}
-
 	public virtual bool GetButton(BUTTON button){
 		if (button == BUTTON.UP) {
 			return Input.GetKey (Up);

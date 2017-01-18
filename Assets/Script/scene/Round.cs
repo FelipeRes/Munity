@@ -14,6 +14,8 @@ public class Round : MonoBehaviour {
 	public Bar gauge2;
 	public Text hitCount1;
 	public Text hitCount2;
+	public Controller controler1;
+	public Controller controler2;
 	public Transform startPoint1;
 	public Transform startPoint2;
 	// Use this for initialization
@@ -22,6 +24,10 @@ public class Round : MonoBehaviour {
 		GameObject playerCharacter2 = Instantiate (player2, startPoint2.position, Quaternion.identity) as GameObject;
 		character1 = playerCharacter1.GetComponent<Player> ();
 		character2 = playerCharacter2.GetComponent<Player> ();
+		character1.controller = controler1;
+		character2.controller = controler2;
+		controler1.player = character1;
+		controler2.player = character2;
 		character1.id = 1;
 		character2.id = 2;
 		character1.enemy = playerCharacter2;
@@ -32,10 +38,5 @@ public class Round : MonoBehaviour {
 		playerCharacter2.GetComponent<InterfacePlayer> ().gauge = gauge2;
 		playerCharacter1.GetComponent<InterfacePlayer> ().hitCount = hitCount1;
 		playerCharacter2.GetComponent<InterfacePlayer> ().hitCount = hitCount2;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

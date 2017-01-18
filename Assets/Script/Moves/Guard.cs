@@ -11,7 +11,7 @@ public class Guard : MonoBehaviour {
 	void Start(){
 		player = this.GetComponent<Player> ();
 		enemy = player.enemy.GetComponent<Player> ();
-		controller = this.GetComponent<Controller> ();
+		controller = player.controller;
 	}
 
 	void Update () {

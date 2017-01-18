@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 	public GameObject wallSensor;
 	public GameObject enemy;
 	public GameObject playerBox;
+	public Controller controller;
 	public int direction;
 	public GameObject sprite;
 	public Vector2 moveDirection;

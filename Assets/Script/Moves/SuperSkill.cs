@@ -17,7 +17,7 @@ public class SuperSkill : MonoBehaviour {
 	public GameObject lightEffect;
 	public GameObject effctPoint;
 	void Start(){
-		controller = this.GetComponent<Controller> ();
+		controller = this.GetComponent<Player> ().controller;
 	}
 
 	void Update () {

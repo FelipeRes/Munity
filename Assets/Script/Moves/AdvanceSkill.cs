@@ -15,7 +15,7 @@ public class AdvanceSkill : MonoBehaviour {
 	public float time;
 
 	void Start(){
-		controller = this.GetComponent<Controller> ();
+		controller = this.GetComponent<Player> ().controller;
 	}
 
 	void Update () {

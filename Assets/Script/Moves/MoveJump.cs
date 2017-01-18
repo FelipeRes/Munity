@@ -13,8 +13,8 @@ public class MoveJump : MonoBehaviour {
 	public Player player;
 
 	void Start(){
-		controller = this.GetComponent<Controller> ();
 		player = this.GetComponent<Player> ();
+		controller = player.controller;
 	}
 
 	void FixedUpdate () {

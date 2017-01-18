@@ -12,7 +12,7 @@ public class BasicSkill : MonoBehaviour {
 	private bool changeState;
 
 	void Start(){
-		controller = this.GetComponent<Controller> ();
+		controller = this.GetComponent<Player> ().controller;
 	}
 
 	void Update () {
