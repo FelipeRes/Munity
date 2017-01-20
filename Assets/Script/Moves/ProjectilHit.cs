@@ -11,11 +11,14 @@ public class ProjectilHit : MonoBehaviour {
 	}
 	void Update () {
 		this.transform.localScale = new Vector2 (1 * direction, 1);
-		this.transform.Translate (Vector2.right * Velocity * Time.deltaTime);
+		this.transform.Translate (Vector2.right * Velocity * Time.deltaTime * direction);
 	}
 	void OnTriggerEnter2D(Collider2D coll){
 		hit.player.colliderList.Remove (this.GetComponentInChildren<BoxCollider2D>());	
 		if (hit.tag != coll.tag) {
+			Destroy (this.gameObject);
+		}
+		if (coll.gameObject.layer == LayerMask.NameToLayer("Wall")) {
 			Destroy (this.gameObject);
 		}
 	}

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Round : MonoBehaviour {
 
+	public bool battleStart;
 	public GameObject player1;
 	public GameObject player2;
 	public Player character1;
@@ -18,6 +20,7 @@ public class Round : MonoBehaviour {
 	public Controller controler2;
 	public Transform startPoint1;
 	public Transform startPoint2;
+	public Animator interfaceAnimator;
 	// Use this for initialization
 	void Start () {
 		GameObject playerCharacter1 = Instantiate (player1, startPoint1.position, Quaternion.identity) as GameObject;
@@ -26,6 +29,8 @@ public class Round : MonoBehaviour {
 		character2 = playerCharacter2.GetComponent<Player> ();
 		character1.controller = controler1;
 		character2.controller = controler2;
+		character1.controller.enable = false;
+		character2.controller.enable = false;
 		controler1.player = character1;
 		controler2.player = character2;
 		character1.id = 1;
@@ -38,5 +43,36 @@ public class Round : MonoBehaviour {
 		playerCharacter2.GetComponent<InterfacePlayer> ().gauge = gauge2;
 		playerCharacter1.GetComponent<InterfacePlayer> ().hitCount = hitCount1;
 		playerCharacter2.GetComponent<InterfacePlayer> ().hitCount = hitCount2;
+		Invoke ("StartRound", 3);
+		battleStart = true;
+	}
+
+	void Update(){
+		if (character1.life <= 0 && battleStart) {
+			Debug.Log ("Player 2 Ganhou");
+			character1.controller.enable = false;
+			character2.controller.enable = false;
+			interfaceAnimator.Play ("Player1Win");
+			character1.anim.SetBool ("OnDead", true);
+			battleStart = false;
+			Invoke ("ReloadScene", 3);
+		}
+		if(character2.life <= 0 && battleStart) {
+			Debug.Log ("Player 1 Ganhou");
+			character1.controller.enable = false;
+			character2.controller.enable = false;
+			interfaceAnimator.Play ("Player2Win");
+			character2.anim.SetBool ("OnDead", true);
+			battleStart = false;
+			Invoke ("ReloadScene", 5);
+		}
+	}
+	void StartRound(){
+		battleStart = true;
+		character1.controller.enable = true;
+		character2.controller.enable = true;
+	}
+	void ReloadScene(){
+		SceneManager.LoadScene("Main");
 	}
 }

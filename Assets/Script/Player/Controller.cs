@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Controller : MonoBehaviour {
 
+	public bool enable;
 	public KeyCode Up;
 	public KeyCode Left;
 	public KeyCode Right;
@@ -16,84 +17,90 @@ public class Controller : MonoBehaviour {
 	public Player player;
 
 	public virtual bool GetButton(BUTTON button){
-		if (button == BUTTON.UP) {
-			return Input.GetKey (Up);
-		}
-		if (button == BUTTON.LEFT) {
-			if (player.direction == 1) {
-				return Input.GetKey (Left);
-			} else {
-				return Input.GetKey (Right);
+		if (enable) {
+			if (button == BUTTON.UP) {
+				return Input.GetKey (Up);
 			}
-		}
-		if (button == BUTTON.RIGHT) {
-			if (player.direction == 1) {
-				return Input.GetKey (Right);
-			} else {
-				return Input.GetKey (Left);
+			if (button == BUTTON.LEFT) {
+				if (player.direction == 1) {
+					return Input.GetKey (Left);
+				} else {
+					return Input.GetKey (Right);
+				}
 			}
-		}
-		if (button == BUTTON.DOWN) {
-			return Input.GetKey (Down);
-		}
-		if (button == BUTTON.A) {
-			return Input.GetKey (A);
-		}
-		if (button == BUTTON.B) {
-			return Input.GetKey (B);
-		}
-		if (button == BUTTON.C) {
-			return Input.GetKey (C);
-		}
-		if (button == BUTTON.X) {
-			return Input.GetKey (X);
-		}
-		if (button == BUTTON.Y) {
-			return Input.GetKey (Y);
-		}
-		if (button == BUTTON.Z) {
-			return Input.GetKey (Z);
+			if (button == BUTTON.RIGHT) {
+				if (player.direction == 1) {
+					return Input.GetKey (Right);
+				} else {
+					return Input.GetKey (Left);
+				}
+			}
+			if (button == BUTTON.DOWN) {
+				return Input.GetKey (Down);
+			}
+			if (button == BUTTON.A) {
+				return Input.GetKey (A);
+			}
+			if (button == BUTTON.B) {
+				return Input.GetKey (B);
+			}
+			if (button == BUTTON.C) {
+				return Input.GetKey (C);
+			}
+			if (button == BUTTON.X) {
+				return Input.GetKey (X);
+			}
+			if (button == BUTTON.Y) {
+				return Input.GetKey (Y);
+			}
+			if (button == BUTTON.Z) {
+				return Input.GetKey (Z);
+			}
+			return false;
 		}
 		return false;
 	}
 	public virtual bool GetButtonDown(BUTTON button){
-		if (button == BUTTON.UP) {
-			return Input.GetKeyDown (Up);
-		}
-		if (button == BUTTON.LEFT) {
-			if (player.direction == 1) {
-				return Input.GetKeyDown (Left);
-			} else {
-				return Input.GetKeyDown (Right);
+		if (enable) {
+			if (button == BUTTON.UP) {
+				return Input.GetKeyDown (Up);
 			}
-		}
-		if (button == BUTTON.RIGHT) {
-			if (player.direction == 1) {
-				return Input.GetKeyDown (Right);
-			} else {
-				return Input.GetKeyDown (Left);
+			if (button == BUTTON.LEFT) {
+				if (player.direction == 1) {
+					return Input.GetKeyDown (Left);
+				} else {
+					return Input.GetKeyDown (Right);
+				}
 			}
-		}
-		if (button == BUTTON.DOWN) {
-			return Input.GetKeyDown (Down);
-		}
-		if (button == BUTTON.A) {
-			return Input.GetKeyDown (A);
-		}
-		if (button == BUTTON.B) {
-			return Input.GetKeyDown (B);
-		}
-		if (button == BUTTON.C) {
-			return Input.GetKeyDown (C);
-		}
-		if (button == BUTTON.X) {
-			return Input.GetKeyDown (X);
-		}
-		if (button == BUTTON.Y) {
-			return Input.GetKeyDown (Y);
-		}
-		if (button == BUTTON.Z) {
-			return Input.GetKeyDown (Z);
+			if (button == BUTTON.RIGHT) {
+				if (player.direction == 1) {
+					return Input.GetKeyDown (Right);
+				} else {
+					return Input.GetKeyDown (Left);
+				}
+			}
+			if (button == BUTTON.DOWN) {
+				return Input.GetKeyDown (Down);
+			}
+			if (button == BUTTON.A) {
+				return Input.GetKeyDown (A);
+			}
+			if (button == BUTTON.B) {
+				return Input.GetKeyDown (B);
+			}
+			if (button == BUTTON.C) {
+				return Input.GetKeyDown (C);
+			}
+			if (button == BUTTON.X) {
+				return Input.GetKeyDown (X);
+			}
+			if (button == BUTTON.Y) {
+				return Input.GetKeyDown (Y);
+			}
+			if (button == BUTTON.Z) {
+				return Input.GetKeyDown (Z);
+			}
+			return false;
 		}
 		return false;
 	}
