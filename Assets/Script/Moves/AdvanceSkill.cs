@@ -15,7 +15,7 @@ public class AdvanceSkill : MonoBehaviour {
 	public float time;
 
 	void Start(){
-		controller = this.GetComponent<Controller> ();
+		controller = this.GetComponent<Player> ().controller;
 	}
 
 	void Update () {
@@ -27,11 +27,12 @@ public class AdvanceSkill : MonoBehaviour {
 				state++;
 				time = 0.5f;
 				if (state == key.Length) {
-					anim.Play (stateName);
+					if (!anim.GetBool ("OnMove") && !anim.GetBool("OnStun")) {
+						anim.Play (stateName);
+						anim.SetBool ("OnMove", true);
+						anim.SetBool ("IgnoreGravity", true);
+					}
 					state = 0;
-					anim.SetBool ("OnMove", true);
-					anim.SetBool ("IgnoreGravity", true);
-					anim.SetBool ("Combo" + stateName, true);
 					anim.SetBool ("Combo" + stateName, true);
 				}
 			}

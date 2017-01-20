@@ -10,7 +10,7 @@ public class BasicMove : MonoBehaviour {
 	public Vector2 movement;
 
 	void Start(){
-		controller = this.GetComponent<Controller> ();
+		controller = this.GetComponent<Player> ().controller;
 	}
 
 	void Update () {

@@ -1,52 +1,149 @@
-Initialize engine version: 5.4.2f2 (b7e030c65c9b)
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
     Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
     Vendor:   Intel
     VRAM:     1792 MB
+    Driver:   10.18.10.4276
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
-Loading C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.690 seconds
-Platform assembly: C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\Felipe Resende\Downloads\Fighting-Game\Fighting Game\Build\Main_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Repo\Munity\Build\Main_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Repo\Munity\Build\Main_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.249 seconds
+Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Repo\Munity\Build\Main_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.746032 ms
-OI
+UnloadTime: 3.483091 ms
+Soco
  
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-OI
+Soco
  
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-OI
+Especial
  
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-OI
+Soco
  
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-OI
+Soco
  
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-OI
+Especial
  
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player 1 Ganhou
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.914250 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 656.
+Total: 0.401122 ms (FindLiveObjects: 0.035066 ms CreateObjectMapping: 0.033355 ms MarkObjects: 0.326285 ms  DeleteObjects: 0.005986 ms)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Especial
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player 2 Ganhou
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.744941 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 656.
+Total: 0.435760 ms (FindLiveObjects: 0.071415 ms CreateObjectMapping: 0.040197 ms MarkObjects: 0.316877 ms  DeleteObjects: 0.005986 ms)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Especial
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Soco
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player 1 Ganhou
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.714151 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 656.
+Total: 0.606814 ms (FindLiveObjects: 0.072270 ms CreateObjectMapping: 0.053026 ms MarkObjects: 0.472109 ms  DeleteObjects: 0.008125 ms)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 19bc -> priority: 1 
+  Thread -> id: 1c04 -> priority: 1 

@@ -12,7 +12,7 @@ public class BasicSkill : MonoBehaviour {
 	private bool changeState;
 
 	void Start(){
-		controller = this.GetComponent<Controller> ();
+		controller = this.GetComponent<Player> ().controller;
 	}
 
 	void Update () {
@@ -20,31 +20,37 @@ public class BasicSkill : MonoBehaviour {
 			anim.SetBool ("OnMove", true);
 			changeState = true;
 		}
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName (stateName)) {
+			anim.SetBool ("OnMove", true);
+		}
 		if (changeState == true && !anim.GetCurrentAnimatorStateInfo (0).IsName (stateName)) {
 			anim.SetBool ("OnMove", false);
 			changeState = false;
 		}
-		if (type == SkillType.Default) {
-			if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == false) {
-				anim.SetBool ("Combo"+stateName, controller.GetButtonDown(key));
-				if (controller.GetButtonDown(key) && !anim.GetBool ("OnMove")) {
-					anim.Play (stateName);
+		if (!anim.GetBool ("OnGuard") && !anim.GetBool ("OnGuardDown")) {
+			if (type == SkillType.Default && !anim.GetBool ("OnStun")) {
+				if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == false) {
+					anim.SetBool ("Combo" + stateName, controller.GetButtonDown (key));
+					if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove") && !anim.GetBool ("Jump")) {
+						anim.Play (stateName);
+						Debug.Log ("Soco");
+					}
 				}
 			}
-		}
-		if (type == SkillType.OnAir) {
-			if (anim.GetBool ("OnGround") == false && anim.GetBool ("Crounch") == false) {
-				anim.SetBool ("Combo"+stateName, controller.GetButtonDown(key));
-				if (controller.GetButtonDown(key) && !anim.GetBool ("OnMove")) {
-					anim.Play (stateName);
+			if (type == SkillType.OnAir && !anim.GetBool ("OnStun")) {
+				if (anim.GetBool ("OnGround") == false && anim.GetBool ("Crounch") == false) {
+					anim.SetBool ("Combo" + stateName, controller.GetButtonDown (key));
+					if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove")) {
+						anim.Play (stateName);
+					}
 				}
 			}
-		}
-		if (type == SkillType.Crounch) {
-			if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == true) {
-				anim.SetBool ("Combo"+stateName,controller.GetButtonDown(key));
-				if (controller.GetButtonDown(key) && !anim.GetBool ("OnMove")) {
-					anim.Play (stateName);
+			if (type == SkillType.Crounch && !anim.GetBool ("OnStun")) {
+				if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == true) {
+					anim.SetBool ("Combo" + stateName, controller.GetButtonDown (key));
+					if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove")) {
+						anim.Play (stateName);
+					}
 				}
 			}
 		}
