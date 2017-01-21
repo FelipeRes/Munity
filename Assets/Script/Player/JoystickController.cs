@@ -7,15 +7,15 @@ public class JoystickController : Controller {
 		player = this.GetComponent<Player> ();
 	}
 
-	public override bool GetButton(BUTTON button){
-		if (button == BUTTON.UP) {
+	public override bool GetButton(Button button){
+		if (button == Button.UP) {
 			if (Input.GetAxis ("Vertical") == 1) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		if (button == BUTTON.LEFT) {
+		if (button == Button.LEFT) {
 			if (player.direction == 1) {
 				if (Input.GetAxis ("Horizontal") == -1) {
 					return true;
@@ -30,7 +30,7 @@ public class JoystickController : Controller {
 				}
 			}
 		}
-		if (button == BUTTON.RIGHT) {
+		if (button == Button.RIGHT) {
 			if (player.direction == 1) {
 				if (Input.GetAxis ("Horizontal") == 1) {
 					return true;
@@ -45,42 +45,42 @@ public class JoystickController : Controller {
 				}
 			}
 		}
-		if (button == BUTTON.DOWN) {
+		if (button == Button.DOWN) {
 			if (Input.GetAxis ("Vertical") == -1) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		if (button == BUTTON.A) {
+		if (button == Button.A) {
 			return Input.GetKey (A);
 		}
-		if (button == BUTTON.B) {
+		if (button == Button.B) {
 			return Input.GetKey (B);
 		}
-		if (button == BUTTON.C) {
+		if (button == Button.C) {
 			return Input.GetKey (C);
 		}
-		if (button == BUTTON.X) {
+		if (button == Button.X) {
 			return Input.GetKey (X);
 		}
-		if (button == BUTTON.Y) {
+		if (button == Button.Y) {
 			return Input.GetKey (Y);
 		}
-		if (button == BUTTON.Z) {
+		if (button == Button.Z) {
 			return Input.GetKey (Z);
 		}
 		return false;
 	}
-	public override bool GetButtonDown(BUTTON button){
-		if (button == BUTTON.UP) {
+	public override bool GetButtonDown(Button button){
+		if (button == Button.UP) {
 			if (Input.GetAxis ("Vertical") == 1) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		if (button == BUTTON.LEFT) {
+		if (button == Button.LEFT) {
 			if (player.direction == 1) {
 				if (Input.GetAxis ("Horizontal") == -1) {
 					return true;
@@ -95,7 +95,7 @@ public class JoystickController : Controller {
 				}
 			}
 		}
-		if (button == BUTTON.RIGHT) {
+		if (button == Button.RIGHT) {
 			if (player.direction == 1) {
 				if (Input.GetAxis ("Horizontal") == 1) {
 					return true;
@@ -110,29 +110,29 @@ public class JoystickController : Controller {
 				}
 			}
 		}
-		if (button == BUTTON.DOWN) {
+		if (button == Button.DOWN) {
 			if (Input.GetAxis ("Vertical") == -1) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		if (button == BUTTON.A) {
+		if (button == Button.A) {
 			return Input.GetKeyDown (A);
 		}
-		if (button == BUTTON.B) {
+		if (button == Button.B) {
 			return Input.GetKeyDown (B);
 		}
-		if (button == BUTTON.C) {
+		if (button == Button.C) {
 			return Input.GetKeyDown (C);
 		}
-		if (button == BUTTON.X) {
+		if (button == Button.X) {
 			return Input.GetKeyDown (X);
 		}
-		if (button == BUTTON.Y) {
+		if (button == Button.Y) {
 			return Input.GetKeyDown (Y);
 		}
-		if (button == BUTTON.Z) {
+		if (button == Button.Z) {
 			return Input.GetKeyDown (Z);
 		}
 		return false;

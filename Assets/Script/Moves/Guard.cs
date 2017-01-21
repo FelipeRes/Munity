@@ -15,8 +15,8 @@ public class Guard : MonoBehaviour {
 	}
 
 	void Update () {
-		if ( enemy.CheckMove() && controller.GetButton (BUTTON.LEFT) && !anim.GetBool("OnStun")  && !anim.GetBool("OnMove")) {
-			if (controller.GetButton (BUTTON.DOWN)) {
+		if ( enemy.CheckMove() && controller.GetButton (Button.LEFT) && !anim.GetBool("OnStun")  && !anim.GetBool("OnMove")) {
+			if (controller.GetButton (Button.DOWN)) {
 				anim.SetBool ("OnGuardDown", true);
 			} else {
 				anim.SetBool ("OnGuard", true);
