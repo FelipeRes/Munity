@@ -18,7 +18,15 @@ public class InterfacePlayer : MonoBehaviour {
 
 	void Update () {
 		lifebar.value = player.life / lifeFactor;
-		gauge.value = (player.gauge >= gaugeFactor) ? 1f : (float)(player.gauge / gaugeFactor);
-		hitCount.text = (player.enemy.GetComponent<SimpleDamage> ().HitCount < 2) ? "" : player.enemy.GetComponent<SimpleDamage> ().HitCount.ToString ();
+		if (player.gauge >= gaugeFactor) {
+ -			gauge.value = 1f;
+ -		} else {
+ -			gauge.value =  (float)(player.gauge/ gaugeFactor);
+ -		}
+ -		if (player.enemy.GetComponent<SimpleDamage>().HitCount < 2) {
+ -			hitCount.text = "";
+ -		} else {
+ -			hitCount.text = player.enemy.GetComponent<SimpleDamage>().HitCount.ToString();
+ -		}
 	}
 }
