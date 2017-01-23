@@ -46,9 +46,13 @@ public class SuperSkill : MonoBehaviour {
 		}
 
 		//@gildaswise - Código anterior está comentado no AdvanceSkill.cs
-		time = (time > 0) ? time - Time.deltaTime : 0;
-		if (time <= 0) state = 0;
-		changeState = AssemblyCSharp.MoveUtils.verifyStateChange (anim, stateName, changeState);
+		if (time > 0) {
+ -			time -= Time.deltaTime;
+ -		} else {
+ -			time = 0;
+ -			state = 0;
+ -		}
+ -		changeState = MoveUtils.verifyStateChange (anim, stateName, changeState);
 
 	}
 
