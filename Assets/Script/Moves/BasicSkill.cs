@@ -5,7 +5,7 @@ public class BasicSkill : MonoBehaviour {
 
 	public Animator anim;
 	public Controller controller;
-	public BUTTON key;
+	public Button key;
 	public string stateName;
 	public bool ignoreGravity;
 	public SkillType type;

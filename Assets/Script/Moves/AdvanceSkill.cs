@@ -6,7 +6,7 @@ public class AdvanceSkill : MonoBehaviour {
 	public Animator anim;
 	public SkillType trype;
 	public Controller controller;
-	public BUTTON[] key;
+	public Button[] key;
 	public string stateName;
 	public bool ignoreGravity;
 	private bool changeState;
@@ -37,21 +37,35 @@ public class AdvanceSkill : MonoBehaviour {
 				}
 			}
 		}
+
+		time = (time > 0) ? time - Time.deltaTime : 0;
+		if (time <= 0) state = 0;
+
+		/*
 		if (time > 0) {
 			time -= Time.deltaTime;
 		} else {
 			time = 0;
 			state = 0;
 		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName (stateName) && changeState == false) {
+		*/
+
+		changeState = AssemblyCSharp.MoveUtils.verifyStateChange (anim, stateName, changeState);
+
+		/*
+		bool inState = anim.GetCurrentAnimatorStateInfo (0).IsName (stateName);
+
+		if (inState && changeState == false) {
 			anim.SetBool ("OnMove", true);
 			anim.SetBool ("IgnoreGravity", true);
 			changeState = true;
 		}
-		if (changeState == true && !anim.GetCurrentAnimatorStateInfo (0).IsName (stateName)) {
+
+		if (!inState && changeState == true) {
 			anim.SetBool ("OnMove", false);
 			anim.SetBool ("IgnoreGravity", false);
 			changeState = false;
 		}
+		*/
 	}
 }
