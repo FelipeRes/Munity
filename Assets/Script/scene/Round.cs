@@ -10,17 +10,14 @@ public class Round : MonoBehaviour {
 	public GameObject player2;
 	public Player character1;
 	public Player character2;
-	public Bar lifeBar1;
-	public Bar lifeBar2;
-	public Bar gauge1;
-	public Bar gauge2;
-	public Text hitCount1;
-	public Text hitCount2;
 	public Controller controler1;
 	public Controller controler2;
 	public Transform startPoint1;
 	public Transform startPoint2;
 	public Animator interfaceAnimator;
+	public PlayerGUI playergui1;
+	public PlayerGUI playergui2;
+	public 
 	// Use this for initialization
 	void Start () {
 		GameObject playerCharacter1 = Instantiate (player1, startPoint1.position, Quaternion.identity) as GameObject;
@@ -37,12 +34,8 @@ public class Round : MonoBehaviour {
 		character2.id = 2;
 		character1.enemy = playerCharacter2;
 		character2.enemy = playerCharacter1;
-		playerCharacter1.GetComponent<InterfacePlayer> ().lifebar = lifeBar1;
-		playerCharacter2.GetComponent<InterfacePlayer> ().lifebar = lifeBar2;
-		playerCharacter1.GetComponent<InterfacePlayer> ().gauge = gauge1;
-		playerCharacter2.GetComponent<InterfacePlayer> ().gauge = gauge2;
-		playerCharacter1.GetComponent<InterfacePlayer> ().hitCount = hitCount1;
-		playerCharacter2.GetComponent<InterfacePlayer> ().hitCount = hitCount2;
+		playergui1.player = character1;
+		playergui2.player = character2;
 		Invoke ("StartRound", 3);
 		battleStart = true;
 	}
