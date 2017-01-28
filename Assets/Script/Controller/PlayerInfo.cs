@@ -8,4 +8,7 @@ public class PlayerInfo : MonoBehaviour {
 	public Character character;
 	public Controller contoller;
 
+	public void OnDestroy () {
+		Debug.Log ("Not Destroyer");
+	}
 }

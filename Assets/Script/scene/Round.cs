@@ -10,8 +10,6 @@ public class Round : MonoBehaviour {
 	public GameObject playerObject2;
 	public Player player1;
 	public Player player2;
-	public Controller controler1;
-	public Controller controler2;
 	public Transform startPoint1;
 	public Transform startPoint2;
 	public Animator interfaceAnimator;
@@ -20,22 +18,26 @@ public class Round : MonoBehaviour {
 	public 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("Inicializando Configuracao");
+		playerObject1 = MainController.Instance.playerInfos [0].character.gameObject;
+		playerObject2 = MainController.Instance.playerInfos [1].character.gameObject;
 		GameObject playerCharacter1 = Instantiate (playerObject1, startPoint1.position, Quaternion.identity) as GameObject;
 		GameObject playerCharacter2 = Instantiate (playerObject2, startPoint2.position, Quaternion.identity) as GameObject;
 		player1 = playerCharacter1.GetComponent<Player> ();
 		player2 = playerCharacter2.GetComponent<Player> ();
-		player1.controller = controler1;
-		player2.controller = controler2;
+		player1.controller = MainController.Instance.playerInfos [0].contoller;
+		player2.controller = MainController.Instance.playerInfos [1].contoller;
 		player1.controller.enable = false;
 		player2.controller.enable = false;
-		player1.id = 1;
-		player2.id = 2;
+		player1.id = MainController.Instance.playerInfos [0].Id;
+		player2.id = MainController.Instance.playerInfos [1].Id;;
 		player1.enemy = playerCharacter2;
 		player2.enemy = playerCharacter1;
 		playergui1.player = player1;
 		playergui2.player = player2;
 		Invoke ("StartRound", 3);
 		battleStart = true;
+		Debug.Log ("Finalizando Configuracao");
 	}
 
 	void Update(){

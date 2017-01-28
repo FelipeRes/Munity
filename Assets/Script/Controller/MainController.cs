@@ -9,11 +9,12 @@ public class MainController : Singleton<MainController> {
 	void Awake(){
 		playerInfos = new List<PlayerInfo> ();
 	}
-	public PlayerInfo StartNewPlayer(){
-		PlayerInfo player = new PlayerInfo ();
-		playerInfos.Add (player);
-		player.Id = playerInfos.IndexOf (player);
-		Debug.Log (playerInfos.Count);
-		return player;
+	public void StartNewPlayer(Character character, Controller controller, PlayerInfo playerInfoBase){
+		PlayerInfo player = Instantiate (playerInfoBase, this.transform);
+		player.character = character;
+		player.contoller = controller;
+		Debug.Log (controller.gameObject.name);
+		player.Id = playerInfos.Count+1;
+		playerInfos.Add(player);
 	}
 }

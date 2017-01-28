@@ -1,39 +1,57 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectCharacter : MonoBehaviour {
 
-	public PlayerInfo player1;
+	public PlayerInfo playerInfoBase;
 	public Controller controller1;
-	public int cursor1;
+	public Controller controller2;
+	public Image player1Face;
+	public Image player2Face;
+	public Cursor cursorObject;
+	public Cursor cursor1;
+	public Cursor cursor2;
 	public int numberOfColumms;
 	public CharacterBox[] characterList; 
 
 	void Start () {
-		cursor1 = 0;
 		controller1.enable = true;
-		//player1 = MainController.Instance.StartNewPlayer();
-		//player1.contoller = controller1;
-		//Debug.Log (player1.Id);
-		//Cursor cursor1 = Instantiate (cursorObject1, this.transform.position, Quaternion.identity);
-		//cursor1.transform.parent = this.gameObject.transform;
+		controller2.enable = true;
 	}
 
 	void Update () {
-		if (controller1.GetButtonDown (Button.FORWARD)) {
-			if (cursor1 > characterList.Length) {
-				cursor1 = 0;
-			} else {
-				cursor1++;
+		if (cursor1 == null) {
+			if (controller1.GetButtonDown (Button.A)) {
+				cursor1 = Instantiate (cursorObject, this.transform) as Cursor;
+				cursor1.controller = controller1;
+				cursor1.lenghtList = characterList.Length;
+				cursor1.numberOfColumms = numberOfColumms;
+			}
+		} else {
+			player1Face.sprite = characterList [cursor1.pointer].face.sprite;
+			if (controller1.GetButtonDown (Button.A)) {
+				controller1.enable = false;
+				MainController.Instance.StartNewPlayer (characterList [cursor1.pointer].character, controller1,playerInfoBase);
 			}
 		}
-		if (controller1.GetButtonDown (Button.BACK)) {
-			if (cursor1 < 0) {
-				cursor1 = characterList.Length;
-			} else {
-				cursor1--;
+		if (cursor2 == null) {
+			if (controller2.GetButtonDown (Button.A)) {
+				cursor2 = Instantiate (cursorObject, this.transform) as Cursor;
+				cursor2.controller = controller2;
+				cursor2.lenghtList = characterList.Length;
+				cursor2.numberOfColumms = numberOfColumms;
 			}
+		} else {
+			player2Face.sprite = characterList [cursor2.pointer].face.sprite;
+			if (controller2.GetButtonDown (Button.A)) {
+				controller2.enable = false;
+				MainController.Instance.StartNewPlayer (characterList [cursor2.pointer].character, controller2,playerInfoBase);
+			}
+		}
+		if (MainController.Instance.playerInfos.Count >= 2) {
+			Application.LoadLevel (0);
 		}
 	}
 }

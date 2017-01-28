@@ -7,8 +7,12 @@ public class CharacterBox : MonoBehaviour {
 
 	public Character character;
 	public Image face;
+	public bool OnFocus;
 
 	void Start () {
-		this.face.sprite = character.face;
+		if (character != null) {
+			this.face.sprite = character.face;
+		}
+
 	}
 }
