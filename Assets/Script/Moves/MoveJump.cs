@@ -19,9 +19,9 @@ public class MoveJump : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (anim.GetBool("OnGround")) {
-			anim.SetBool (jumpFoward, controller.GetButton(BUTTON.UP)&&controller.GetButton(BUTTON.RIGHT));
-			anim.SetBool (jumpBack, controller.GetButton(BUTTON.UP)&&controller.GetButton(BUTTON.LEFT));
-			anim.SetBool (jump, controller.GetButton(BUTTON.UP));
+			anim.SetBool (jumpFoward, controller.GetButton(Button.UP)&&controller.GetButton(Button.RIGHT));
+			anim.SetBool (jumpBack, controller.GetButton(Button.UP)&&controller.GetButton(Button.LEFT));
+			anim.SetBool (jump, controller.GetButton(Button.UP));
 			if (anim.GetCurrentAnimatorStateInfo(0).IsName("JumpFoward")) {
 				player.moveDirection.y = force.y;
 				player.moveDirection.x = force.x*player.direction;
