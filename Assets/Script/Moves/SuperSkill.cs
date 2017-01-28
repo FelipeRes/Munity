@@ -6,6 +6,7 @@ public class SuperSkill : MonoBehaviour {
 	public Animator anim;
 	public Controller controller;
 	public Button[] key;
+	public	 Button[] mappedKeys;
 	public string stateName;
 	public bool ignoreGravity;
 	private bool changeState;
@@ -19,15 +20,20 @@ public class SuperSkill : MonoBehaviour {
 
 	void Start(){
 		controller = this.GetComponent<Player> ().controller;
+		mappedKeys = new Button[key.Length];
+		for (int i = 0; i < key.Length; i++) {
+			mappedKeys [i] = key [i];
+		}
 	}
 
 	void Update () {
+		InvertControls ();
 		if (OnAir != anim.GetBool ("OnGround")) {
 			if (anim.GetBool ("Combo" + stateName)) {anim.SetBool ("Combo" + stateName, false);}
-			if (controller.GetButtonDown (key [state])) {
+			if (controller.GetButtonDown (mappedKeys [state])) {
 				state++;
 				time = 0.5f;
-				if (state == key.Length) {
+				if (state == mappedKeys.Length) {
 					if (player.gauge >= gauge && !anim.GetBool("OnStun") && !anim.GetBool ("OnMove")) {
 						player.gauge -= gauge;
 						anim.Play (stateName);
@@ -64,8 +70,27 @@ public class SuperSkill : MonoBehaviour {
 		}
 
 	}
-
 	void Return(){
 		Player.time = 1;
+	}
+	void InvertControls(){
+		for (int i = 0; i < key.Length; i++) {
+			if (player.direction == -1) {
+				if (key [i] == Button.BACK) {
+					mappedKeys [i] = Button.FORWARD;
+				}
+				if (key [i] == Button.FORWARD) {
+					mappedKeys [i] = Button.BACK;
+				}
+			}
+			if (player.direction == 1) {
+				if (key [i] == Button.BACK) {
+					mappedKeys [i] = key[i];
+				}
+				if (key [i] == Button.FORWARD) {
+					mappedKeys [i] = key[i];
+				}
+			}
+		}
 	}
 }

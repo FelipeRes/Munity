@@ -4,10 +4,10 @@ using System.Collections;
 public class JoystickController : Controller {
 
 	void Start(){
-		player = this.GetComponent<Player> ();
+		//player = this.GetComponent<Player> ();
 	}
 
-	public override bool GetButton(Button button){
+	/*public override bool GetButton(Button button){
 		if (button == Button.UP) {
 			if (Input.GetAxis ("Vertical") == 1) {
 				return true;
@@ -136,5 +136,5 @@ public class JoystickController : Controller {
 			return Input.GetKeyDown (Z);
 		}
 		return false;
-	}
+	}*/
 }

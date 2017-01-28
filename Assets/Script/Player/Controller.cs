@@ -14,17 +14,17 @@ public class Controller : MonoBehaviour {
 	public KeyCode X;
 	public KeyCode Y;
 	public KeyCode Z;
-	public Player player;
+	//public Player player;
 
 	public virtual bool GetButton(Button button){
 		if (enable) {
 			switch (button) {
 				case Button.UP:
 					return Input.GetKey (Up);
-				case Button.LEFT:
-					return (player.direction == 1) ? Input.GetKey (Left) : Input.GetKey (Right);
-				case Button.RIGHT:
-					return (player.direction == 1) ? Input.GetKey (Right) : Input.GetKey (Left);
+				case Button.BACK:
+					return Input.GetKey (Left);
+				case Button.FORWARD:
+					return Input.GetKey (Right);
 				case Button.DOWN: 
 					return Input.GetKey (Down);
 				case Button.A: 
@@ -50,10 +50,10 @@ public class Controller : MonoBehaviour {
 			switch (button) {
 				case Button.UP:
 					return Input.GetKeyDown (Up);
-				case Button.LEFT:
-					return (player.direction == 1) ? Input.GetKeyDown (Left) : Input.GetKeyDown (Right);
-				case Button.RIGHT:
-					return (player.direction == 1) ? Input.GetKeyDown (Right) : Input.GetKeyDown (Left);
+				case Button.BACK:
+					return Input.GetKeyDown (Left);
+				case Button.FORWARD:
+					return Input.GetKeyDown (Right);
 				case Button.DOWN: 
 					return Input.GetKeyDown (Down);
 				case Button.A: 

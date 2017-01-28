@@ -28,8 +28,6 @@ public class Round : MonoBehaviour {
 		player2.controller = controler2;
 		player1.controller.enable = false;
 		player2.controller.enable = false;
-		controler1.player = player1;
-		controler2.player = player2;
 		player1.id = 1;
 		player2.id = 2;
 		player1.enemy = playerCharacter2;

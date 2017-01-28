@@ -21,14 +21,14 @@ public class SelectCharacter : MonoBehaviour {
 	}
 
 	void Update () {
-		if (controller1.GetButtonDown (Button.RIGHT)) {
+		if (controller1.GetButtonDown (Button.FORWARD)) {
 			if (cursor1 > characterList.Length) {
 				cursor1 = 0;
 			} else {
 				cursor1++;
 			}
 		}
-		if (controller1.GetButtonDown (Button.LEFT)) {
+		if (controller1.GetButtonDown (Button.BACK)) {
 			if (cursor1 < 0) {
 				cursor1 = characterList.Length;
 			} else {

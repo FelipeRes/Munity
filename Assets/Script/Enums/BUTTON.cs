@@ -1,8 +1,8 @@
 ﻿public enum Button {
 
 	UP,
-	RIGHT, 
-	LEFT, 
+	FORWARD, 
+	BACK, 
 	DOWN, 
 	A, 
 	B, 
