@@ -16,91 +16,61 @@ public class Controller : MonoBehaviour {
 	public KeyCode Z;
 	public Player player;
 
-	public virtual bool GetButton(BUTTON button){
+	public virtual bool GetButton(Button button){
 		if (enable) {
-			if (button == BUTTON.UP) {
-				return Input.GetKey (Up);
+			switch (button) {
+				case Button.UP:
+					return Input.GetKey (Up);
+				case Button.LEFT:
+					return (player.direction == 1) ? Input.GetKey (Left) : Input.GetKey (Right);
+				case Button.RIGHT:
+					return (player.direction == 1) ? Input.GetKey (Right) : Input.GetKey (Left);
+				case Button.DOWN: 
+					return Input.GetKey (Down);
+				case Button.A: 
+					return Input.GetKey (A);
+				case Button.B: 
+					return Input.GetKey (B);
+				case Button.C: 
+					return Input.GetKey (C);
+				case Button.X: 
+					return Input.GetKey (X);
+				case Button.Y: 
+					return Input.GetKey (Y);
+				case Button.Z: 
+					return Input.GetKey (Z);
+				default:
+					return false;
 			}
-			if (button == BUTTON.LEFT) {
-				if (player.direction == 1) {
-					return Input.GetKey (Left);
-				} else {
-					return Input.GetKey (Right);
-				}
-			}
-			if (button == BUTTON.RIGHT) {
-				if (player.direction == 1) {
-					return Input.GetKey (Right);
-				} else {
-					return Input.GetKey (Left);
-				}
-			}
-			if (button == BUTTON.DOWN) {
-				return Input.GetKey (Down);
-			}
-			if (button == BUTTON.A) {
-				return Input.GetKey (A);
-			}
-			if (button == BUTTON.B) {
-				return Input.GetKey (B);
-			}
-			if (button == BUTTON.C) {
-				return Input.GetKey (C);
-			}
-			if (button == BUTTON.X) {
-				return Input.GetKey (X);
-			}
-			if (button == BUTTON.Y) {
-				return Input.GetKey (Y);
-			}
-			if (button == BUTTON.Z) {
-				return Input.GetKey (Z);
-			}
-			return false;
 		}
 		return false;
 	}
-	public virtual bool GetButtonDown(BUTTON button){
+	public virtual bool GetButtonDown(Button button){
 		if (enable) {
-			if (button == BUTTON.UP) {
-				return Input.GetKeyDown (Up);
+			switch (button) {
+				case Button.UP:
+					return Input.GetKeyDown (Up);
+				case Button.LEFT:
+					return (player.direction == 1) ? Input.GetKeyDown (Left) : Input.GetKeyDown (Right);
+				case Button.RIGHT:
+					return (player.direction == 1) ? Input.GetKeyDown (Right) : Input.GetKeyDown (Left);
+				case Button.DOWN: 
+					return Input.GetKeyDown (Down);
+				case Button.A: 
+					return Input.GetKeyDown (A);
+				case Button.B: 
+					return Input.GetKeyDown (B);
+				case Button.C: 
+					return Input.GetKeyDown (C);
+				case Button.X: 
+					return Input.GetKeyDown (X);
+				case Button.Y: 
+					return Input.GetKeyDown (Y);
+				case Button.Z: 
+					return Input.GetKeyDown (Z);
+				default:
+					return false;
 			}
-			if (button == BUTTON.LEFT) {
-				if (player.direction == 1) {
-					return Input.GetKeyDown (Left);
-				} else {
-					return Input.GetKeyDown (Right);
-				}
-			}
-			if (button == BUTTON.RIGHT) {
-				if (player.direction == 1) {
-					return Input.GetKeyDown (Right);
-				} else {
-					return Input.GetKeyDown (Left);
-				}
-			}
-			if (button == BUTTON.DOWN) {
-				return Input.GetKeyDown (Down);
-			}
-			if (button == BUTTON.A) {
-				return Input.GetKeyDown (A);
-			}
-			if (button == BUTTON.B) {
-				return Input.GetKeyDown (B);
-			}
-			if (button == BUTTON.C) {
-				return Input.GetKeyDown (C);
-			}
-			if (button == BUTTON.X) {
-				return Input.GetKeyDown (X);
-			}
-			if (button == BUTTON.Y) {
-				return Input.GetKeyDown (Y);
-			}
-			if (button == BUTTON.Z) {
-				return Input.GetKeyDown (Z);
-			}
-			return false;
 		}
 		return false;
 	}

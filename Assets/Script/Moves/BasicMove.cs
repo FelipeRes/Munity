@@ -5,7 +5,7 @@ public class BasicMove : MonoBehaviour {
 
 	public Animator anim;
 	public Controller controller;
-	public BUTTON key;
+	public Button key;
 	public string stateName;
 	public Vector2 movement;
 
