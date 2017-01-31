@@ -5,6 +5,7 @@ using UnityEngine;
 public class Cursor : MonoBehaviour {
 
 	public Controller controller;
+	public Color color;
 	public int pointer;
 	public int lenghtList;
 	public int numberOfColumms;

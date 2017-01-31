@@ -28,9 +28,11 @@ public class SelectCharacter : MonoBehaviour {
 				cursor1.controller = controller1;
 				cursor1.lenghtList = characterList.Length;
 				cursor1.numberOfColumms = numberOfColumms;
+				cursor1.color = Color.red;
 			}
 		} else {
 			player1Face.sprite = characterList [cursor1.pointer].face.sprite;
+			HighlightCharBox (cursor1);
 			if (controller1.GetButtonDown (Button.A)) {
 				controller1.enable = false;
 				MainController.Instance.StartNewPlayer (characterList [cursor1.pointer].character, controller1,playerInfoBase);
@@ -42,9 +44,11 @@ public class SelectCharacter : MonoBehaviour {
 				cursor2.controller = controller2;
 				cursor2.lenghtList = characterList.Length;
 				cursor2.numberOfColumms = numberOfColumms;
+				cursor2.color = Color.blue;
 			}
 		} else {
 			player2Face.sprite = characterList [cursor2.pointer].face.sprite;
+			HighlightCharBox (cursor2);
 			if (controller2.GetButtonDown (Button.A)) {
 				controller2.enable = false;
 				MainController.Instance.StartNewPlayer (characterList [cursor2.pointer].character, controller2,playerInfoBase);
@@ -52,6 +56,19 @@ public class SelectCharacter : MonoBehaviour {
 		}
 		if (MainController.Instance.playerInfos.Count >= 2) {
 			Application.LoadLevel (0);
+		}
+	}
+	public void HighlightCharBox(Cursor cursor){
+		for (int i = 0; i < characterList.Length; i++) {
+			if (cursor.pointer == i) {
+				if(!characterList[i].cursorList.Contains(cursor)){
+					characterList [i].cursorList.Add(cursor);
+				}
+			} else {
+				if (characterList [i].cursorList.Contains (cursor)) {
+					characterList [i].cursorList.Remove (cursor);
+				}
+			}
 		}
 	}
 }
