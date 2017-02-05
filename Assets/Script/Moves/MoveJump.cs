@@ -5,7 +5,6 @@ public class MoveJump : MonoBehaviour {
 
 	public Animator anim;
 	public Controller controller;
-	//public BUTTON[] key;
 	public string jump;
 	public string jumpFoward;
 	public string jumpBack;
