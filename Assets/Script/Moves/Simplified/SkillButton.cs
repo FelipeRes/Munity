@@ -11,56 +11,24 @@ public class SkillButton : MonoBehaviour {
 	public string defaultAnimName;
 	public string airAnimName;
 	public string crounchAnimName;
-	private bool defaultState;
-	private bool airState;
-	private bool crounchState;
+	public MoveState defaultMoveUtils;
+	public MoveState airMoveUtils;
+	public MoveState crounchMoveUtils;
 
 	void Start(){
 		player = this.GetComponent<Player> ();
 		anim = player.anim;
 		controller = player.controller;
+		defaultMoveUtils = new MoveState (anim, defaultAnimName); 
+		airMoveUtils = new MoveState (anim, airAnimName); 
+		crounchMoveUtils = new MoveState (anim, crounchAnimName); 
 	}
 
 	void Update () {
-		//Don't work here 	
-		if (!anim.GetCurrentAnimatorStateInfo (0).IsName (defaultAnimName) && defaultState == true) {
-			anim.SetBool ("OnMove", false);
-			defaultState = false;
-		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName (defaultAnimName) && defaultState == false) {
-			anim.SetBool ("OnMove", true);
-			defaultState = true;
-		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName (defaultAnimName)) {
-			anim.SetBool ("OnMove", true);
-		}
+		defaultMoveUtils.ManageState ();
+		airMoveUtils.ManageState ();
+		crounchMoveUtils.ManageState ();
 
-		//=========================================================
-		if (!anim.GetCurrentAnimatorStateInfo (0).IsName (airAnimName) && airState == true) {
-			anim.SetBool ("OnMove", false);
-			airState = false;
-		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName (airAnimName) && airState == false) {
-			anim.SetBool ("OnMove", true);
-			airState = true;
-		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName (airAnimName)) {
-			anim.SetBool ("OnMove", true);
-		}
-
-		//====================================================
-		if (!anim.GetCurrentAnimatorStateInfo (0).IsName (crounchAnimName) && crounchState == true) {
-			anim.SetBool ("OnMove", false);
-			crounchState = false;
-		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName (crounchAnimName) && crounchState == false) {
-			anim.SetBool ("OnMove", true);
-			crounchState = true;
-		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName (crounchAnimName)) {
-			anim.SetBool ("OnMove", true);
-		}
-		//====================================================
 		if (!anim.GetBool ("OnGuard") && !anim.GetBool ("OnGuardDown") && !anim.GetBool ("OnStun")) {
 			if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == false) {
 				anim.SetBool ("Combo" + defaultAnimName, controller.GetButtonDown (key));
