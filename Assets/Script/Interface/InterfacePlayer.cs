@@ -23,10 +23,10 @@ public class InterfacePlayer : MonoBehaviour {
  		} else {
  			gauge.value =  (float)(player.gauge/ gaugeFactor);
  		}
- 		if (player.enemy.GetComponent<SimpleDamage>().HitCount < 2) {
+ 		if (player.enemy.GetComponent<SimpleDamage>().hitCount < 2) {
  			hitCount.text = "";
  		} else {
- 			hitCount.text = player.enemy.GetComponent<SimpleDamage>().HitCount.ToString();
+ 			hitCount.text = player.enemy.GetComponent<SimpleDamage>().hitCount.ToString();
  		}
 	}
 }
