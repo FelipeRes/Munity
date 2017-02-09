@@ -53,20 +53,6 @@ public class AdvanceSkill : MonoBehaviour {
 			state = 0;
 		}
 
-		/*bool inState = anim.GetCurrentAnimatorStateInfo (0).IsName (stateName);
-
-		if (inState && changeState == false) {
-			anim.SetBool ("OnMove", true);
-			anim.SetBool ("IgnoreGravity", true);
-			changeState = true;
-		}
-
-		if (!inState && changeState == true) {
-			anim.SetBool ("OnMove", false);
-			anim.SetBool ("IgnoreGravity", false);
-			changeState = false;
-		}*/
-
 	}
 
 	//=========================================================================//

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour {
 
 	public static float GroundReference = 4;
+	public static float pushFactor = 5;
 	public int id;
 	public Animator anim;
 	public GameObject wallSensor;
@@ -61,15 +62,12 @@ public class Player : MonoBehaviour {
 		//GROUND DETECTION CONFIGURATION ====================================================================================//
 		if (anim.GetBool ("OnGround")) {
 			this.transform.position = new Vector2 (this.transform.position.x, -GroundReference);
-			if (enemy.transform.position.x > this.transform.position.x) {
-				visual.transform.localScale = new Vector2 (1, 1);
-				direction = 1;
-			} else {
-				visual.transform.localScale = new Vector2 (-1, 1);
-				direction = -1;
-			}
+			SetDirection ();
 			if (groundTouch == false) {
-				moveDirection = Vector2.zero;
+				if (!anim.GetCurrentAnimatorStateInfo (0).IsName ("AirHit")) {
+					moveDirection.x = 0;
+				}
+				moveDirection.y = 0;
 				groundTouch = true;
 			}
 		}
@@ -79,17 +77,16 @@ public class Player : MonoBehaviour {
 			groundTouch = false;
 		}
 		anim.SetBool ("TouchGround", groundTouch);
-
 		//CONFIGURE PHYSICS===================================================================================================//
-		if (anim.GetBool ("OnGround")) {
+		if (anim.GetBool("OnGround")) {
 			if (moveDirection.x != 0) {
-				moveDirection.x -= Time.deltaTime * moveDirection.x*7;
+				moveDirection.x -= Time.deltaTime * moveDirection.x * pushFactor;
 				if (moveDirection.x <= 0.016f && moveDirection.x >= -0.016f) {
 					moveDirection.x = 0;
 				}
 			}
-			//moveDirection.y = 0;
-		} else {
+		}
+		if (!anim.GetBool ("OnGround")) {
 			moveDirection.y -= gravity * Time.deltaTime * Player.time;
 		}
 		if(anim.GetBool ("IgnoreGravity")){
@@ -99,26 +96,24 @@ public class Player : MonoBehaviour {
 	}
 
 	//=========================================================================================//
-	public void PushCharacter(Hit hit){
-		Vector2 vetor = new Vector2 ();
-		Vector2 airVetor = new Vector2 ();
-		vetor = hit.recuo;
-		airVetor = hit.recuoNoAr;
-		vetor.x *= -this.GetComponent<Player> ().direction;
-		airVetor.x *= -this.GetComponent<Player> ().direction;
-		if (anim.GetBool ("OnGround")) {
-			this.GetComponent<Player> ().moveDirection = vetor;
+	public void SetDirection(){
+		if (enemy.transform.position.x > this.transform.position.x) {
+			visual.transform.localScale = new Vector2 (1, 1);
+			direction = 1;
 		} else {
-			this.GetComponent<Player> ().moveDirection = airVetor;
+			visual.transform.localScale = new Vector2 (-1, 1);
+			direction = -1;
 		}
+	}
+	public void PushCharacter(Vector2 vector){
+		Debug.Log (vector);
+		vector.x *= -this.GetComponent<Player> ().direction;
+		this.GetComponent<Player> ().moveDirection = vector;
 		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);
 	}
-	public void SimplePushCharacter(Hit hit){
-		Vector2 vetor = new Vector2 ();
-		vetor = hit.recuo;
-		vetor.x *= -this.GetComponent<Player> ().direction;
-		vetor.y = 0;
-		this.GetComponent<Player> ().moveDirection = vetor;
+	public void SimplePushCharacter(float force){
+		force *= -this.GetComponent<Player> ().direction;
+		this.GetComponent<Player> ().moveDirection.x = force;
 		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);
 	}
 	public bool CheckMove(){

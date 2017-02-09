@@ -15,11 +15,13 @@ public class Guard : MonoBehaviour {
 	}
 
 	void Update () {
-		if ( enemy.CheckMove() && controller.GetButton (Button.BACK) && !anim.GetBool("OnStun")  && !anim.GetBool("OnMove")) {
-			if (controller.GetButton (Button.DOWN)) {
-				anim.SetBool ("OnGuardDown", true);
-			} else {
-				anim.SetBool ("OnGuard", true);
+		if ((enemy.CheckMove() || enemy.anim.GetBool("OnMove")) && !anim.GetBool("OnStun")  && !anim.GetBool("OnMove")) {
+			if ((player.direction == 1 && controller.GetButton (Button.BACK)) || (player.direction == -1 && controller.GetButton (Button.FORWARD))) {
+				if (controller.GetButton (Button.DOWN)) {
+					anim.SetBool ("OnGuardDown", true);
+				} else {
+					anim.SetBool ("OnGuard", true);
+				}
 			}
 		} else {
 			anim.SetBool ("OnGuard", false);
