@@ -68,11 +68,19 @@ public class SimpleDamage : MonoBehaviour {
 			player.PushCharacter(hit.recuo);
 		}else{
 			player.PushCharacter(hit.recuoNoAr);
-		}
-		if (hit.KnockDown) {
-			anim.SetTrigger("KnockDown");
-		} else {
-			anim.SetTrigger("Hit");
+		}anim.SetTrigger("Hit");
+		if(anim.GetBool("OnGround")){
+			if (hit.KnockDown) {
+				anim.SetTrigger("KnockDown");
+			} else {
+				anim.SetTrigger("Hit");
+			}
+		}else{
+			if (hit.airKnockDown) {
+				anim.SetTrigger("AirKnockDown");
+			} else {
+				anim.SetTrigger("Hit");
+			}
 		}
 		stunTimeCount = hit.stunTime;
 		hitTimerCounter = hit.stunTime;
@@ -104,9 +112,7 @@ public class SimpleDamage : MonoBehaviour {
 			hitTimerCounter = 0;
 			hitCount = 0;
 		} else {
-			if (anim.GetBool("OnGround")) {
-				hitTimerCounter -= Time.deltaTime;
-			}
+			hitTimerCounter -= Time.deltaTime;
 		}
 	}
 }

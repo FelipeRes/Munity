@@ -6,6 +6,7 @@ public class Hit : MonoBehaviour {
 	public int damage;
 	public int gauge;
 	public bool KnockDown;
+	public bool airKnockDown;
 	public SkillHeight height;
 	public float stunTime;
 	public float stopTime;
