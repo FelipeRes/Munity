@@ -34,7 +34,6 @@ public class SkillButton : MonoBehaviour {
 				anim.SetBool ("Combo" + defaultAnimName, controller.GetButtonDown (key));
 				if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove") && !anim.GetBool ("Jump")) {
 					anim.Play (defaultAnimName);
-					Debug.Log ("Soco");
 				}
 			}
 			if (anim.GetBool ("OnGround") == false && anim.GetBool ("Crounch") == false) {

@@ -3,24 +3,27 @@ using System.Collections;
 
 public class AdvanceSkill : MonoBehaviour {
 
-	public Animator anim;
+	private Animator anim;
 	public SkillType trype;
-	public Player player;
-	public Button[] key;
+	private Player player;
+	public Button[] sequenceKey;
+	public Button[] activeKey;
 	private Button[] mappedKeys;
 	public string stateName;
 	public bool ignoreGravity;
 	private bool changeState;
 	public bool OnAir;
-	public int state;
-	public float time;
-	public MoveState moveState;
+	private bool sequenceOk;
+	private int state;
+	private float time;
+	private MoveState moveState;
 
 	void Start(){
 		player = this.GetComponent<Player> ();
-		mappedKeys = new Button[key.Length];
-		for (int i = 0; i < key.Length; i++) {
-			mappedKeys [i] = key [i];
+		anim = player.anim;
+		mappedKeys = new Button[sequenceKey.Length];
+		for (int i = 0; i < sequenceKey.Length; i++) {
+			mappedKeys [i] = sequenceKey [i];
 		}
 		moveState = new MoveState (anim, stateName,true);
 	}
@@ -36,42 +39,56 @@ public class AdvanceSkill : MonoBehaviour {
 				state++;
 				time = 0.5f;
 				if (state == mappedKeys.Length) {
-					if (!anim.GetBool ("OnMove") && !anim.GetBool("OnStun")) {
-						anim.Play (stateName);
-						anim.SetBool ("OnMove", true);
-						anim.SetBool ("IgnoreGravity", true);
-					}
+					sequenceOk = true;
 					state = 0;
-					anim.SetBool ("Combo" + stateName, true);
 				}
 			}
 		}
 		if (time > 0) {
 			time -= Time.deltaTime;
 		} else {
+			sequenceOk = false;
 			time = 0;
 			state = 0;
+		}
+
+		if (sequenceOk && checkActiveKey()) {
+			if (!anim.GetBool ("OnMove") && !anim.GetBool ("OnStun")) {
+				anim.Play (stateName);
+				anim.SetBool ("OnMove", true);
+				anim.SetBool ("IgnoreGravity", true);
+			}
+			state = 0;
+			anim.SetBool ("Combo" + stateName, true);
 		}
 
 	}
 
 	//=========================================================================//
+	bool checkActiveKey(){
+		for (int i = 0; i < activeKey.Length; i++) {
+			if (player.controller.GetButtonDown (activeKey [i])) {
+				return true;
+			}
+		}
+		return false;
+	}
 	void InvertControls(){
-		for (int i = 0; i < key.Length; i++) {
+		for (int i = 0; i < sequenceKey.Length; i++) {
 			if (player.direction == -1) {
-				if (key [i] == Button.BACK) {
+				if (sequenceKey [i] == Button.BACK) {
 					mappedKeys [i] = Button.FORWARD;
 				}
-				if (key [i] == Button.FORWARD) {
+				if (sequenceKey [i] == Button.FORWARD) {
 					mappedKeys [i] = Button.BACK;
 				}
 			}
 			if (player.direction == 1) {
-				if (key [i] == Button.BACK) {
-					mappedKeys [i] = key[i];
+				if (sequenceKey [i] == Button.BACK) {
+					mappedKeys [i] = sequenceKey[i];
 				}
-				if (key [i] == Button.FORWARD) {
-					mappedKeys [i] = key[i];
+				if (sequenceKey [i] == Button.FORWARD) {
+					mappedKeys [i] = sequenceKey[i];
 				}
 			}
 		}
