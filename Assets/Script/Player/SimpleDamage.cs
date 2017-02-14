@@ -8,12 +8,13 @@ public class SimpleDamage : MonoBehaviour {
 	public int hitCount;
 	private float stunTimeCount;
 	private float hitTimerCounter;
-	public Player player;
-	public Collider2D collider;
+	private Player player;
+	private Collider2D collider;
 
 	void Start(){
 		player = this.GetComponent<Player> ();
 		anim = player.anim;
+		collider = player.playerBox;
 	}
 	void Update(){
 		StunTime ();

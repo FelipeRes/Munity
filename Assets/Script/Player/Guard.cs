@@ -3,15 +3,16 @@ using System.Collections;
 
 public class Guard : MonoBehaviour {
 
-	public Animator anim;
-	public Player player;
-	public Player enemy;
-	public Controller controller;
+	private Animator anim;
+	private Player player;
+	private Player enemy;
+	private Controller controller;
 
 	void Start(){
 		player = this.GetComponent<Player> ();
 		enemy = player.enemy.GetComponent<Player> ();
 		controller = player.controller;
+		anim = player.anim;
 	}
 
 	void Update () {
