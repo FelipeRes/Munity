@@ -55,7 +55,7 @@ public class SelectCharacter : MonoBehaviour {
 			}
 		}
 		if (MainController.Instance.playerInfos.Count >= 2) {
-			Application.LoadLevel (0);
+			Application.LoadLevel (1);
 		}
 	}
 	public void HighlightCharBox(Cursor cursor){

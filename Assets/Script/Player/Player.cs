@@ -98,10 +98,10 @@ public class Player : MonoBehaviour {
 	//=========================================================================================//
 	public void SetDirection(){
 		if (enemy.transform.position.x > this.transform.position.x) {
-			visual.transform.localScale = new Vector2 (1, 1);
+			visual.transform.localScale = new Vector3 (1, 1,1);
 			direction = 1;
 		} else {
-			visual.transform.localScale = new Vector2 (-1, 1);
+			visual.transform.localScale = new Vector3 (-1, 1,1);
 			direction = -1;
 		}
 	}
