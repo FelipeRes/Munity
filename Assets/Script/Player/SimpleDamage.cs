@@ -42,8 +42,6 @@ public class SimpleDamage : MonoBehaviour {
 			} else {
 				ApplyDamage(coll,hit);
 			}
-			Player.time = 0;
-			Invoke ("Return", hit.stopTime);
 		}
 	}
 	void Return(){
@@ -57,6 +55,8 @@ public class SimpleDamage : MonoBehaviour {
 		}
 	}
 	void ApplyDamage(Collider2D coll, Hit hit){
+		Player.time = 0;
+		Invoke ("Return", hit.stopTime);
 		hitCount++;
 		ShowHitEffect (coll, hit.hitEffect);
 		player.life -= hit.damage;
