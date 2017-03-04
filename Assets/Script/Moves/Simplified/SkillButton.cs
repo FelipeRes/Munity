@@ -31,25 +31,19 @@ public class SkillButton : MonoBehaviour {
 
 		if (!anim.GetBool ("OnGuard") && !anim.GetBool ("OnGuardDown") && !anim.GetBool ("OnStun")) {
 			if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == false) {
-				if (anim.GetBool ("OnMove") && !anim.GetBool ("Combo" + defaultAnimName)) {
-					if (controller.GetButtonDown (key)) {
-						anim.SetBool ("Combo" + defaultAnimName, true);
-					}
-				} else if(!anim.GetBool ("OnMove")){
-					anim.SetBool ("Combo" + defaultAnimName, false);
-				}
+				anim.SetBool ("Combo" + defaultAnimName, controller.GetButton(key));
 				if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove") && !anim.GetBool ("Jump")) {
 					anim.Play (defaultAnimName);
 				}
 			}
 			if (anim.GetBool ("OnGround") == false && anim.GetBool ("Crounch") == false) {
-				anim.SetBool ("Combo" + airAnimName, controller.GetButtonDown (key));
+				anim.SetBool ("Combo" + airAnimName, controller.GetButton (key));
 				if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove")) {
 					anim.Play (airAnimName);
 				}
 			}
 			if (anim.GetBool ("OnGround") == true && anim.GetBool ("Crounch") == true) {
-				anim.SetBool ("Combo" + crounchAnimName, controller.GetButtonDown (key));
+				anim.SetBool ("Combo" + crounchAnimName, controller.GetButton (key));
 				if (controller.GetButtonDown (key) && !anim.GetBool ("OnMove")) {
 					anim.Play (crounchAnimName);
 				}
