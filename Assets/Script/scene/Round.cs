@@ -15,7 +15,8 @@ public class Round : MonoBehaviour {
 	public Animator interfaceAnimator;
 	public PlayerGUI playergui1;
 	public PlayerGUI playergui2;
-	public 
+	public float time;
+	public Text playerGuiTime;
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("Inicializando Configuracao");
@@ -36,34 +37,52 @@ public class Round : MonoBehaviour {
 		playergui1.player = player1;
 		playergui2.player = player2;
 		Invoke ("StartRound", 3);
-		battleStart = true;
 		Debug.Log ("Finalizando Configuracao");
 	}
 
 	void Update(){
+		if (battleStart) {
+			time -= Time.deltaTime;
+			playerGuiTime.text = ((int)(time)).ToString ();
+			if(time <= 0){
+				battleStart = false;
+				if (player1.life > player2.life) {
+					interfaceAnimator.Play ("Player1Win");
+					EndBattle (player2, player1);
+				} else if (player2.life > player1.life) {
+					interfaceAnimator.Play ("Player2Win");
+					EndBattle (player1, player2);
+				} else if(player1.life == player2.life){
+					interfaceAnimator.Play ("DrawnGame");
+					DrawGame ();
+				}
+			}
+		}
 		if (player1.life <= 0 && battleStart) {
-			Debug.Log ("Player 2 Ganhou");
-			player1.controller.enable = false;
-			player2.controller.enable = false;
 			interfaceAnimator.Play ("Player1Win");
-			player1.anim.SetBool ("OnDead", true);
-			battleStart = false;
-			Invoke ("ReloadScene", 3);
+			EndBattle (player2,player1);
 		}
 		if(player2.life <= 0 && battleStart) {
-			Debug.Log ("Player 1 Ganhou");
-			player1.controller.enable = false;
-			player2.controller.enable = false;
 			interfaceAnimator.Play ("Player2Win");
-			player2.anim.SetBool ("OnDead", true);
-			battleStart = false;
-			Invoke ("ReloadScene", 5);
+			EndBattle (player1,player2);
 		}
 	}
 	void StartRound(){
 		battleStart = true;
 		player1.controller.enable = true;
 		player2.controller.enable = true;
+		battleStart = true;
+	}
+	void EndBattle(Player win, Player lose){
+		win.controller.enable = false;
+		lose.controller.enable = false;
+		lose.anim.SetBool ("OnDead", true);
+		Invoke ("ReloadScene", 5);
+	}
+	void DrawGame(){
+		player1.controller.enable = false;
+		player2.controller.enable = false;
+		Invoke ("ReloadScene", 5);
 	}
 	void ReloadScene(){
 		SceneManager.LoadScene("Main");
