@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
-	public static float GroundReference = 4;
+	public static float GroundReference = 0;
 	public static float pushFactor = 5;
 	public int id;
 	public Animator anim;
