@@ -51,7 +51,7 @@ public class SimpleDamage : MonoBehaviour {
 		ShowHitEffect (coll, guardParticle);
 		player.SimplePushCharacter (hit.recuo.x);
 		if(player.anim.GetBool("OnWall") && hit.player.anim.GetBool("OnGround")){
-			hit.player.SimplePushCharacter(hit.recuo.x*2);
+			hit.player.SimplePushCharacter(hit.recuo.x);
 		}
 	}
 	void ApplyDamage(Collider2D coll, Hit hit){
