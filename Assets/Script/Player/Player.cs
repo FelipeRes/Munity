@@ -106,7 +106,6 @@ public class Player : MonoBehaviour {
 		}
 	}
 	public void PushCharacter(Vector2 vector){
-		Debug.Log (vector);
 		vector.x *= -this.GetComponent<Player> ().direction;
 		this.GetComponent<Player> ().moveDirection = vector;
 		this.transform.Translate (this.GetComponent<Player> ().moveDirection * Time.deltaTime);

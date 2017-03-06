@@ -20,20 +20,7 @@ public class DataPull : MonoBehaviour {
 			enemyStates.Add (overrideAnim2.animationClips [i].name);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (round.battleStart) {
-			float distance_x = round.player1.transform.position.x - round.player2.transform.position.x;
-			float distance_y = round.player1.transform.position.y - round.player2.transform.position.y;
-			float life = round.player1.life/ round.player2.life;
-			string meuEstado = GetState(round.player1.anim);
-			string estadoInimigo = GetState(round.player2.anim);
-			string botoes = GetButtons(round.player1.controller);
-			query = "Insert into info values(" + distance_x + "," + distance_y + "," + life + "," + meuEstado + "," + estadoInimigo + "," + botoes + ")\n";
-			Debug.Log (query);
-		}
-	}
+
 	string GetState(Animator anim){
 		for (int i = 0; i < myStates.Count; i++) {
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName(myStates[i])){
@@ -75,5 +62,15 @@ public class DataPull : MonoBehaviour {
 			button += 1;
 		}
 		return button.ToString ();
+	}
+	public string GetData(){
+		int distance_x = (int)(round.player1.transform.position.x - round.player2.transform.position.x);
+		int distance_y = (int)(round.player1.transform.position.y - round.player2.transform.position.y);
+		float life = round.player1.life/ round.player2.life;
+		string meuEstado = GetState(round.player1.anim);
+		string estadoInimigo = GetState(round.player2.anim);
+		string botoes = GetButtons(round.player1.controller);
+		query = "Insert into info values(" + distance_x + "," + distance_y + "," + life + ",'" + meuEstado + "','" + estadoInimigo + "','" + botoes + "');\n";
+		return query;
 	}
 }
