@@ -3,138 +3,107 @@ using System.Collections;
 
 public class JoystickController : Controller {
 
-	void Start(){
-		//player = this.GetComponent<Player> ();
-	}
-
-	/*public override bool GetButton(Button button){
-		if (button == Button.UP) {
-			if (Input.GetAxis ("Vertical") == 1) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		if (button == Button.LEFT) {
-			if (player.direction == 1) {
-				if (Input.GetAxis ("Horizontal") == -1) {
-					return true;
-				} else {
-					return false;
-				}	
-			} else {
-				if (Input.GetAxis ("Horizontal") == 1) {
+	public float sensibilty;
+	public override bool GetButton(Button button){
+		if (enable) {
+			if (button == Button.UP) {
+				if (Input.GetAxis ("AXISY") >= sensibilty) {
 					return true;
 				} else {
 					return false;
 				}
 			}
-		}
-		if (button == Button.RIGHT) {
-			if (player.direction == 1) {
-				if (Input.GetAxis ("Horizontal") == 1) {
-					return true;
-				} else {
-					return false;
-				}
-			} else {
-				if (Input.GetAxis ("Horizontal") == -1) {
+			if (button == Button.DOWN) {
+				if (Input.GetAxis ("AXISY") <= -sensibilty) {
 					return true;
 				} else {
 					return false;
 				}
 			}
-		}
-		if (button == Button.DOWN) {
-			if (Input.GetAxis ("Vertical") == -1) {
-				return true;
-			} else {
-				return false;
+			if (button == Button.FORWARD) {
+				if (Input.GetAxis ("AXISX") >= sensibilty) {
+					return true;
+				} else {
+					return false;
+				}
 			}
-		}
-		if (button == Button.A) {
-			return Input.GetKey (A);
-		}
-		if (button == Button.B) {
-			return Input.GetKey (B);
-		}
-		if (button == Button.C) {
-			return Input.GetKey (C);
-		}
-		if (button == Button.X) {
-			return Input.GetKey (X);
-		}
-		if (button == Button.Y) {
-			return Input.GetKey (Y);
-		}
-		if (button == Button.Z) {
-			return Input.GetKey (Z);
+			if (button == Button.BACK) {
+				if (Input.GetAxis ("AXISX") <= -sensibilty) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			if (button == Button.A) {
+				return Input.GetButton ("A");
+			}
+			if (button == Button.B) {
+				return Input.GetButton ("B");
+			}
+			if (button == Button.C) {
+				return Input.GetButton ("C");
+			}
+			if (button == Button.X) {
+				return Input.GetButton ("X");
+			}
+			if (button == Button.Y) {
+				return Input.GetButton ("Y");
+			}
+			if (button == Button.Z) {
+				return Input.GetButton ("Z");
+			}
 		}
 		return false;
 	}
 	public override bool GetButtonDown(Button button){
-		if (button == Button.UP) {
-			if (Input.GetAxis ("Vertical") == 1) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		if (button == Button.LEFT) {
-			if (player.direction == 1) {
-				if (Input.GetAxis ("Horizontal") == -1) {
-					return true;
-				} else {
-					return false;
-				}	
-			} else {
-				if (Input.GetAxis ("Horizontal") == 1) {
+		if (enable) {
+			if (button == Button.UP) {
+				if (Input.GetAxis ("AXISY") >= sensibilty) {
 					return true;
 				} else {
 					return false;
 				}
 			}
-		}
-		if (button == Button.RIGHT) {
-			if (player.direction == 1) {
-				if (Input.GetAxis ("Horizontal") == 1) {
-					return true;
-				} else {
-					return false;
-				}
-			} else {
-				if (Input.GetAxis ("Horizontal") == -1) {
+			if (button == Button.DOWN) {
+				if (Input.GetAxis ("AXISY") <= -sensibilty) {
 					return true;
 				} else {
 					return false;
 				}
 			}
-		}
-		if (button == Button.DOWN) {
-			if (Input.GetAxis ("Vertical") == -1) {
-				return true;
-			} else {
-				return false;
+			if (button == Button.FORWARD) {
+				if (Input.GetAxis ("AXISX") >= sensibilty) {
+					return true;
+				} else {
+					return false;
+				}
 			}
-		}
-		if (button == Button.A) {
-			return Input.GetKeyDown (A);
-		}
-		if (button == Button.B) {
-			return Input.GetKeyDown (B);
-		}
-		if (button == Button.C) {
-			return Input.GetKeyDown (C);
-		}
-		if (button == Button.X) {
-			return Input.GetKeyDown (X);
-		}
-		if (button == Button.Y) {
-			return Input.GetKeyDown (Y);
-		}
-		if (button == Button.Z) {
-			return Input.GetKeyDown (Z);
+			if (button == Button.BACK) {
+				if (Input.GetAxis ("AXISX") <= -sensibilty) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			if (button == Button.A) {
+				return Input.GetButtonDown ("A");
+			}
+			if (button == Button.B) {
+				return Input.GetButtonDown ("B");
+			}
+			if (button == Button.C) {
+				return Input.GetButtonDown ("C");
+			}
+			if (button == Button.X) {
+				return Input.GetButtonDown ("X");
+			}
+			if (button == Button.Y) {
+				return Input.GetButtonDown ("Y");
+			}
+			if (button == Button.Z) {
+				return Input.GetButtonDown ("Z");
+			}
 		}
 		return false;
-	}*/
+	}
 }
