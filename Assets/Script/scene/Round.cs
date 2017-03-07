@@ -27,6 +27,7 @@ public class Round : MonoBehaviour {
 		player1 = playerCharacter1.GetComponent<Player> ();
 		player2 = playerCharacter2.GetComponent<Player> ();
 		player1.controller = MainController.Instance.playerInfos [0].contoller;
+		//player2.controller = MainController.Instance.playerInfos [1].contoller;
 
 		GameObject con = Instantiate (MainController.Instance.playerInfos [1].contoller.gameObject) as GameObject;
 		player2.controller = con.GetComponent<IAControl>();

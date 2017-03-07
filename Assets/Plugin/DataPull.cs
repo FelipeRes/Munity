@@ -29,48 +29,39 @@ public class DataPull : MonoBehaviour {
 		}
 		return "none";
 	}
-	string GetButtons(Controller controller){
-		int button = 0;
-		if (controller.GetButton (Button.UP)) {
-			button += 1000000000;
-		}
-		if (controller.GetButton (Button.DOWN)) {
-			button += 100000000;
-		}
-		if (controller.GetButton (Button.FORWARD)) {
-			button += 10000000;
-		}
-		if (controller.GetButton (Button.BACK)) {
-			button += 1000000;
-		}
-		if (controller.GetButton (Button.A)) {
-			button += 100000;
-		}
-		if (controller.GetButton (Button.B)) {
-			button += 10000;
-		}
-		if (controller.GetButton (Button.C)) {
-			button += 1000;
-		}
-		if (controller.GetButton (Button.X)) {
-			button += 100;
-		}
-		if (controller.GetButton (Button.Y)) {
-			button += 10;
-		}
-		if (controller.GetButton (Button.Z)) {
-			button += 1;
-		}
-		return button.ToString ();
-	}
 	public string GetData(){
 		int distance_x = (int)(round.player1.transform.position.x - round.player2.transform.position.x);
 		int distance_y = (int)(round.player1.transform.position.y - round.player2.transform.position.y);
-		float life = round.player1.life/ round.player2.life;
-		string meuEstado = GetState(round.player1.anim);
-		string estadoInimigo = GetState(round.player2.anim);
-		string botoes = GetButtons(round.player1.controller);
-		query = "Insert into info values(" + distance_x + "," + distance_y + "," + life + ",'" + meuEstado + "','" + estadoInimigo + "','" + botoes + "');\n";
+		int button_up = 0;
+		if (round.player1.controller.GetButton (Button.UP)) {
+			button_up = 1;
+		}
+		int button_down = 0;
+		if (round.player1.controller.GetButton (Button.DOWN)) {
+			button_down = 1;
+		}
+		int button_left = 0;
+		if (round.player1.controller.GetButton (Button.FORWARD)) {
+			button_left = 1;
+		}
+		int button_right = 0;
+		if (round.player1.controller.GetButton (Button.BACK)) {
+			button_right = 1;
+		}
+		int button_a = 0;
+		if (round.player1.controller.GetButton (Button.A)) {
+			button_a = 1;
+		}
+		int button_b = 0;
+		if (round.player1.controller.GetButton (Button.B)) {
+			button_b = 1;
+		}
+		int button_c = 0;
+		if (round.player1.controller.GetButton (Button.C)) {
+			button_c = 1;
+		}
+
+		query = "Insert into info values(" + distance_x + "," + distance_y + "," + button_up + "," + button_down + "," + button_left + "," + button_right + "," + button_a + "," + button_b + "," + button_c +");\n";
 		return query;
 	}
 }
