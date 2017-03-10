@@ -15,7 +15,9 @@ public class IAControl : Controller {
 	Data data;
 	public List<int> idexList_dist_x = new List<int> ();
 	public List<int> idexList_dist_y = new List<int> ();
+	public List<int> countIndex = new List<int>();
 	public int index;
+	public List<int> indexList = new List<int>();
 
 	public void Config(){
 		conn = "URI=file:" + Application.dataPath + "/Plugin/aidata.s3db";
@@ -102,9 +104,8 @@ public class IAControl : Controller {
 	void checkCommands(){
 		int value_x = (int)((player.transform.position.x - player.enemy.transform.position.x) / 2);
 		int value_y = (int)((player.transform.position.y - player.enemy.transform.position.y) / 2);
-		//index = 0;
-		//index = data.distancia_x.IndexOf (value_x);
 		idexList_dist_x.Clear();
+		countIndex.Clear ();
 		for (int i = 0; i < data.distancia_x.Count; i++) {
 			if (value_x == data.distancia_x [i]) {
 				idexList_dist_x.Add (i);
@@ -118,13 +119,20 @@ public class IAControl : Controller {
 		}
 		for(int i = 0; i < idexList_dist_x.Count; i++){
 			for (int j = 0; j < idexList_dist_y.Count; j++) {
-				//Debug.Log(idexList_dist_x [i] + "-" + idexList_dist_y [j]);
 				if (idexList_dist_x [i] == idexList_dist_y [j]) {
 					index = idexList_dist_x [i];
-					//Debug.Log(idexList_dist_x [i] + "-" + idexList_dist_y [j]);
+					int qntIndex = data.count [index];
+					for(int x = 0; x< qntIndex; x++){
+						countIndex.Add (index);
+					}
 				}
 			}
 		}
+		if (countIndex.Count > 0) {
+			int rand = Random.Range (0, countIndex.Count);
+			index = countIndex [rand];
+		}
+
 
 	}
 	void ReadData(){
@@ -132,7 +140,8 @@ public class IAControl : Controller {
 		dbconn = (IDbConnection)new SqliteConnection (conn);
 		dbconn.Open ();
 		IDbCommand dbcmd = dbconn.CreateCommand ();
-		query = "Select distinct * from info group by distancia_x, distancia_y";
+		//query = "Select *, count(*) from info group by distancia_x, distancia_y";
+		query = "select *,count(*) from info group by distancia_x, distancia_y, button_up, button_down, button_left, button_right, button_a, button_b, button_c";
 		dbcmd.CommandText = query;
 		IDataReader reader = dbcmd.ExecuteReader ();
 		Debug.Log ("Ler " + query);
@@ -146,6 +155,7 @@ public class IAControl : Controller {
 			data.button_a.Add (reader.GetBoolean (6));
 			data.button_b.Add (reader.GetBoolean (7));
 			data.button_c.Add (reader.GetBoolean (8));
+			data.count.Add (reader.GetInt32 (9));
 		}
 		reader.Close ();
 		reader = null;

@@ -13,4 +13,5 @@ public class Data : MonoBehaviour {
 	public List<bool> button_a = new List<bool>();
 	public List<bool> button_b = new List<bool>();
 	public List<bool> button_c = new List<bool>();
+	public List<int> count = new List<int>();
 }

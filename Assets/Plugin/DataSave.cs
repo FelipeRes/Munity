@@ -13,9 +13,11 @@ public class DataSave : MonoBehaviour {
 	string query;
 	public bool dataCollectStart;
 	public int count;
+	public int count2;
 	string[] querys;
-
+	public bool collectStart;
 	void Start(){
+		count2 = 10;
 		conn = "URI=file:" + Application.dataPath + "/Plugin/aidata.s3db";
 		dbconn = (IDbConnection)new SqliteConnection (conn);
 		dbconn.Open ();
@@ -26,29 +28,31 @@ public class DataSave : MonoBehaviour {
 		if (dataPull.round.battleStart) {
 			query += dataPull.GetData ();
 			dataCollectStart = true;
-			count = 0;
 		}
 		if (dataCollectStart == true && dataPull.round.battleStart == false) {
-			Debug.Log ("Inicia salvamento de dados");
-			count++;
-			string[] querys = query.Split ('\n');
-			Debug.Log (querys.Length);
-			if (count < querys.Length) {
-				Debug.Log ("Save " + count);
-				dbcmd.CommandText = querys[count];
-				IDataReader reader = dbcmd.ExecuteReader ();
-				reader.Close ();
-				reader = null;
-			}
-			if (count >= query.Length) {
-				dataCollectStart = false;
-				dbcmd.Dispose ();
-				dbcmd = null;
-				dbconn.Close ();
-				dbconn = null;
-				dataCollectStart = false;
-				Debug.Log ("Data save complete");
-			}
+			/*string[] querys = query.Split ('\n');
+			for (int i = 0; i < querys.Length; i++) {
+				Save(querys[i]);
+			}*/
+			Debug.Log ("Data collect start");
+
+			dbcmd.CommandText = query;
+			IDataReader reader = dbcmd.ExecuteReader ();
+			reader.Close ();
+			reader = null;
+
+			dbcmd.Dispose ();
+			dbcmd = null;
+			dbconn.Close ();
+			dbconn = null;
+			dataCollectStart = false;
+			Debug.Log ("Data save complete");
 		}
+	}
+	void Save(string q){
+		dbcmd.CommandText = q;
+		IDataReader reader = dbcmd.ExecuteReader ();
+		reader.Close ();
+		reader = null;
 	}
 }
