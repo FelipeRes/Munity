@@ -61,7 +61,7 @@ public class DataPull : MonoBehaviour {
 			button_c = 1;
 		}
 
-		query = "Insert into player values(" + distance_x + "," + distance_y + "," + button_up + "," + button_down + "," + button_left + "," + button_right + "," + button_a + "," + button_b + "," + button_c +");\n";
+		query = "Insert into ia values(" + distance_x + "," + distance_y + "," + button_up + "," + button_down + "," + button_left + "," + button_right + "," + button_a + "," + button_b + "," + button_c +");\n";
 		return query;
 	}
 }

@@ -65,7 +65,7 @@ public class IAControl : Controller {
 			}
 		}
 		if (button == Button.A) {
-			return Input.GetKey (A);
+			return Input.GetKeyDown (A);
 		}
 		return false;
 	}
@@ -97,7 +97,7 @@ public class IAControl : Controller {
 			}
 		}
 		if (button == Button.A) {
-			return Input.GetKey (A);
+			return Input.GetKeyDown (A);
 		}
 		return false;
 	}
@@ -141,7 +141,7 @@ public class IAControl : Controller {
 		dbconn.Open ();
 		IDbCommand dbcmd = dbconn.CreateCommand ();
 		//query = "Select *, count(*) from info group by distancia_x, distancia_y";
-		query = "select *,count(*) from info group by distancia_x, distancia_y, button_up, button_down, button_left, button_right, button_a, button_b, button_c";
+		query = "select *,count(*) from player group by distancia_x, distancia_y, button_up, button_down, button_left, button_right, button_a, button_b, button_c";
 		dbcmd.CommandText = query;
 		IDataReader reader = dbcmd.ExecuteReader ();
 		Debug.Log ("Ler " + query);
