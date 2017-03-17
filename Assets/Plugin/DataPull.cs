@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class DataPull : MonoBehaviour {
 
@@ -29,7 +30,7 @@ public class DataPull : MonoBehaviour {
 		}
 		return "none";
 	}
-	public string GetData(){
+	public void GetData(){
 		int distance_x = (int)(round.player1.transform.position.x - round.player2.transform.position.x);
 		int distance_y = (int)(round.player1.transform.position.y - round.player2.transform.position.y);
 		int button_up = 0;
@@ -61,7 +62,16 @@ public class DataPull : MonoBehaviour {
 			button_c = 1;
 		}
 
-		query = "Insert into ia values(" + distance_x + "," + distance_y + "," + button_up + "," + button_down + "," + button_left + "," + button_right + "," + button_a + "," + button_b + "," + button_c +");\n";
-		return query;
+		Analytics.CustomEvent("Infos", new Dictionary<string, object>{
+			{ "distance_x", distance_x },
+			{ "distance_y", distance_y },
+			{ "button_up", button_up },
+			{ "button_down", button_down },
+			{ "button_left", button_left },
+			{ "button_right", button_right },
+			{ "button_a", button_a },
+			{ "button_b", button_b },
+			{ "button_c", button_c }
+		});
 	}
 }
