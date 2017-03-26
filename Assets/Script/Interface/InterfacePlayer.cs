@@ -5,7 +5,7 @@ using System.Collections;
 public class InterfacePlayer : MonoBehaviour {
 
 	public Player player;
-	public SimpleDamage simpleDamage;
+	public Damage simpleDamage;
 	public Bar lifebar;
 	public Bar gauge;
 	public Text hitCount;
@@ -23,10 +23,10 @@ public class InterfacePlayer : MonoBehaviour {
  		} else {
  			gauge.value =  (float)(player.gauge/ gaugeFactor);
  		}
- 		if (player.enemy.GetComponent<SimpleDamage>().hitCount < 2) {
+ 		if (player.enemy.GetComponent<Damage>().hitCount < 2) {
  			hitCount.text = "";
  		} else {
- 			hitCount.text = player.enemy.GetComponent<SimpleDamage>().hitCount.ToString();
+ 			hitCount.text = player.enemy.GetComponent<Damage>().hitCount.ToString();
  		}
 	}
 }

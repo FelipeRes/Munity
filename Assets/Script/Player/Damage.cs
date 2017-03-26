@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SimpleDamage : MonoBehaviour {
+public class Damage : MonoBehaviour {
 
 	private Animator anim;
 	public GameObject guardParticle;
 	public int hitCount;
+	public float guardBreakCount;
+	private bool guardBreak;
 	private float stunTimeCount;
 	private float hitTimerCounter;
 	private Player player;
@@ -19,6 +21,14 @@ public class SimpleDamage : MonoBehaviour {
 	void Update(){
 		StunTime ();
 		TimeHitCount ();
+		if (guardBreakCount >= Global.GuardBreakValue) {
+			guardBreak = true;
+		}else{
+			guardBreak = false;
+		}
+		if(guardBreakCount > 0){
+			guardBreakCount -= Global.GuardBreakDrecrement*Time.deltaTime;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D coll){
@@ -28,13 +38,13 @@ public class SimpleDamage : MonoBehaviour {
 				return;
 			}
 			if (anim.GetBool ("OnGuard")) {
-				if (hit.height == SkillHeight.Simple || hit.height == SkillHeight.Overhead) {
+				if ((hit.height == SkillHeight.Simple || hit.height == SkillHeight.Overhead) && !guardBreak) {
 					Blocked (coll, hit);
 				} else {
 					ApplyDamage(coll,hit);
 				}
 			} else if (anim.GetBool ("OnGuardDown")) {
-				if (hit.height == SkillHeight.Simple || hit.height == SkillHeight.Sweep) {
+				if ((hit.height == SkillHeight.Simple || hit.height == SkillHeight.Sweep) && !guardBreak) {
 					Blocked (coll, hit);
 				} else {
 					ApplyDamage(coll,hit);
@@ -48,6 +58,7 @@ public class SimpleDamage : MonoBehaviour {
 		Player.time = 1;
 	}
 	void Blocked(Collider2D coll, Hit hit){
+		guardBreakCount += hit.damage;
 		ShowHitEffect (coll, guardParticle);
 		player.SimplePushCharacter (hit.recuo.x);
 		if(player.anim.GetBool("OnWall") && hit.player.anim.GetBool("OnGround")){
@@ -85,6 +96,7 @@ public class SimpleDamage : MonoBehaviour {
 		}
 		stunTimeCount = hit.stunTime;
 		hitTimerCounter = hit.stunTime;
+		guardBreakCount = Global.GuardBreakValue / 2;
 	}
 
 	void ShowHitEffect(Collider2D coll, GameObject particle){

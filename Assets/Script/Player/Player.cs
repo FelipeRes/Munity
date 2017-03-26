@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
-	public static float GroundReference = 0;
-	public static float pushFactor = 5;
 	public int id;
 	public Animator anim;
 	public GameObject wallSensor;
@@ -61,7 +59,7 @@ public class Player : MonoBehaviour {
 
 		//GROUND DETECTION CONFIGURATION ====================================================================================//
 		if (anim.GetBool ("OnGround")) {
-			this.transform.position = new Vector2 (this.transform.position.x, -GroundReference);
+			this.transform.position = new Vector2 (this.transform.position.x, 0);
 			SetDirection ();
 			if (groundTouch == false) {
 				if (!anim.GetCurrentAnimatorStateInfo (0).IsName ("AirHit")) {
@@ -80,7 +78,7 @@ public class Player : MonoBehaviour {
 		//CONFIGURE PHYSICS===================================================================================================//
 		if (anim.GetBool("OnGround")) {
 			if (moveDirection.x != 0) {
-				moveDirection.x -= Time.deltaTime * moveDirection.x * pushFactor;
+				moveDirection.x -= Time.deltaTime * moveDirection.x * Global.PushCharacterFactor;
 				if (moveDirection.x <= 0.016f && moveDirection.x >= -0.016f) {
 					moveDirection.x = 0;
 				}

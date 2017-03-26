@@ -12,6 +12,7 @@ public class Bar : MonoBehaviour {
 	private Vector2 positionMax;
 	private Vector2 positionMin;
 	private float intervalo;
+	private Color color;
 	void Start () {
 		image = this.GetComponent<Image> ();
 		lifeAnchorMax = image.rectTransform.anchorMax;
@@ -19,6 +20,7 @@ public class Bar : MonoBehaviour {
 		positionMax = image.rectTransform.anchorMax;
 		positionMin = image.rectTransform.anchorMin;
 		intervalo = image.rectTransform.anchorMin.x - image.rectTransform.anchorMax.x;
+		color = this.image.color;
 	}
 
 	void Update () {
@@ -29,5 +31,11 @@ public class Bar : MonoBehaviour {
 			lifeAnchorMin.x = positionMax.x + intervalo * value;
 			image.rectTransform.anchorMin = lifeAnchorMin;
 		}
+	}
+	public void SetColor(Color color){
+		image.color = color;
+	}
+	public void RestoreColor(){
+		image.color = this.color;
 	}
 }

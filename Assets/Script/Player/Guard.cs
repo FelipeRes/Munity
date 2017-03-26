@@ -13,7 +13,7 @@ public class Guard : MonoBehaviour {
 		enemy = player.enemy.GetComponent<Player> ();
 		controller = player.controller;
 		anim = player.anim;
-	}
+	} 
 
 	void Update () {
 		if ((enemy.CheckMove() || enemy.anim.GetBool("OnMove")) && !anim.GetBool("OnStun")  && !anim.GetBool("OnMove")) {
