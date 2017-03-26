@@ -35,13 +35,18 @@ public class AdvanceSkill : MonoBehaviour {
 			if (anim.GetBool ("Combo" + stateName)) {
 				anim.SetBool ("Combo" + stateName, false);
 			}
-			if (player.controller.GetButtonDown (mappedKeys [state])) {
-				state++;
-				time = 0.5f;
-				if (state == mappedKeys.Length) {
-					sequenceOk = true;
-					state = 0;
+			if (mappedKeys.Length > 0) {
+				if (player.controller.GetButtonDown (mappedKeys [state])) {
+					state++;
+					time = 0.5f;
+					if (state == mappedKeys.Length) {
+						sequenceOk = true;
+						state = 0;
+					}
 				}
+			} else {
+				sequenceOk = true;
+				time = 1f;//need adjust
 			}
 		}
 		if (time > 0) {

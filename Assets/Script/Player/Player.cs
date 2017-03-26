@@ -95,12 +95,14 @@ public class Player : MonoBehaviour {
 
 	//=========================================================================================//
 	public void SetDirection(){
-		if (enemy.transform.position.x > this.transform.position.x) {
-			visual.transform.localScale = new Vector3 (1, 1,1);
-			direction = 1;
-		} else {
-			visual.transform.localScale = new Vector3 (-1, 1,1);
-			direction = -1;
+		if (!anim.GetBool ("IgnoreGravity")) {
+			if (enemy.transform.position.x > this.transform.position.x) {
+				visual.transform.localScale = new Vector3 (1, 1, 1);
+				direction = 1;
+			} else {
+				visual.transform.localScale = new Vector3 (-1, 1, 1);
+				direction = -1;
+			}
 		}
 	}
 	public void PushCharacter(Vector2 vector){
