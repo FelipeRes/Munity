@@ -59,11 +59,11 @@ public class Round : MonoBehaviour {
 			}
 		}
 		if (player1.life <= 0 && battleStart) {
-			interfaceAnimator.Play ("Player1Win");
+			interfaceAnimator.Play ("Player2Win");
 			EndBattle (player2,player1);
 		}
 		if(player2.life <= 0 && battleStart) {
-			interfaceAnimator.Play ("Player2Win");
+			interfaceAnimator.Play ("Player1Win");
 			EndBattle (player1,player2);
 		}
 	}
