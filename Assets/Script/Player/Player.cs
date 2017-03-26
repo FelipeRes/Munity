@@ -39,7 +39,6 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update(){
-
 		//BASIC MOVE GLOBAL CONFIGURATION ====================================================================================//
 		anim.SetFloat ("Time", Player.time);
 		this.transform.position += visual.transform.localPosition;
