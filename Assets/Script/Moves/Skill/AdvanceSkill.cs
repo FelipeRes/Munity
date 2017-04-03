@@ -17,6 +17,7 @@ public class AdvanceSkill : MonoBehaviour {
 	private int state;
 	private float time;
 	private MoveState moveState;
+	public AudioClip voiceSound;
 
 	void Start(){
 		player = this.GetComponent<Player> ();
@@ -60,6 +61,7 @@ public class AdvanceSkill : MonoBehaviour {
 		if (sequenceOk && checkActiveKey()) {
 			if (!anim.GetBool ("OnMove") && !anim.GetBool ("OnStun")) {
 				anim.Play (stateName);
+				player.audioSource.PlayOneShot (voiceSound);
 				anim.SetBool ("OnMove", true);
 				anim.SetBool ("IgnoreGravity", true);
 			}

@@ -10,6 +10,7 @@ public class MoveJump : MonoBehaviour {
 	public string jumpBack;
 	public Vector2 force;
 	public Player player;
+	public AudioClip jumpSound;
 
 	void Start(){
 		player = this.GetComponent<Player> ();
@@ -31,13 +32,16 @@ public class MoveJump : MonoBehaviour {
 				player.moveDirection.y = force.y;
 				player.moveDirection.x = force.x*player.direction;
 				anim.SetBool ("OnMove", false);
+				player.audioSource.PlayOneShot (jumpSound);
 			}else if (anim.GetCurrentAnimatorStateInfo(0).IsName("JumpBack")) {
 				player.moveDirection.y = force.y;
 				player.moveDirection.x = -force.x*player.direction;
 				anim.SetBool ("OnMove", false);
+				player.audioSource.PlayOneShot (jumpSound);
 			}else if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Jump")) {
 				player.moveDirection.y = force.y;
 				anim.SetBool ("OnMove", false);
+				player.audioSource.PlayOneShot (jumpSound);
 			}
 		}
 

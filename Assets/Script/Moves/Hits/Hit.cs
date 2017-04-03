@@ -14,4 +14,5 @@ public class Hit : MonoBehaviour {
 	public Vector2 recuoNoAr;
 	public GameObject hitEffect;
 	public Player player;
+	public AudioClip soundEffect;
 }

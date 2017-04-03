@@ -12,6 +12,9 @@ public class Damage : MonoBehaviour {
 	private float hitTimerCounter;
 	private Player player;
 	private Collider2D collider;
+	public AudioClip blockSoundEffect;
+	public AudioClip knockDown;
+	public bool knockDownTrigger;
 
 	void Start(){
 		player = this.GetComponent<Player> ();
@@ -28,6 +31,14 @@ public class Damage : MonoBehaviour {
 		}
 		if(guardBreakCount > 0){
 			guardBreakCount -= Global.GuardBreakDrecrement*Time.deltaTime;
+		}
+		if ((anim.GetCurrentAnimatorStateInfo (0).IsName ("KnockDown") || anim.GetCurrentAnimatorStateInfo (0).IsName ("KnockDonw"))) {
+			if (!knockDownTrigger) {
+				player.audioSource.PlayOneShot (knockDown);
+			}
+			knockDownTrigger = true;
+		} else {
+			knockDownTrigger = false;
 		}
 	}
 
@@ -58,6 +69,7 @@ public class Damage : MonoBehaviour {
 		Player.time = 1;
 	}
 	void Blocked(Collider2D coll, Hit hit){
+		player.audioSource.PlayOneShot (blockSoundEffect);
 		guardBreakCount += hit.damage;
 		ShowHitEffect (coll, guardParticle);
 		player.SimplePushCharacter (hit.recuo.x);
@@ -66,6 +78,7 @@ public class Damage : MonoBehaviour {
 		}
 	}
 	void ApplyDamage(Collider2D coll, Hit hit){
+		player.audioSource.PlayOneShot (hit.soundEffect);
 		Player.time = 0;
 		Invoke ("Return", hit.stopTime);
 		hitCount++;

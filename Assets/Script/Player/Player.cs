@@ -18,6 +18,8 @@ public class Player : MonoBehaviour {
 	public static float time;
 	public float life;
 	public float gauge;
+	public AudioSource audioSource;
+	public AudioClip groundTouchSound;
 
 	public List<BoxCollider2D> colliderList;
 
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour {
 				if (!anim.GetCurrentAnimatorStateInfo (0).IsName ("AirHit")) {
 					moveDirection.x = 0;
 				}
+				audioSource.PlayOneShot (groundTouchSound);
 				moveDirection.y = 0;
 				groundTouch = true;
 			}

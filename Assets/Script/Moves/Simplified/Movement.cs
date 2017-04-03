@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour {
 	public Vector2 movement;
 	public string walkForward;
 	public string walkBack;
+	public AudioClip jumpSound;
 
 	void Start(){
 		player = this.GetComponent<Player> ();
@@ -49,15 +50,17 @@ public class Movement : MonoBehaviour {
 			}
 			//Jump
 			if (anim.GetCurrentAnimatorStateInfo (0).IsName (jumpForward)) {
+				player.audioSource.PlayOneShot (jumpSound);
 				player.moveDirection.y = jumpForce.y;
 				player.moveDirection.x = jumpForce.x * player.direction;
 				anim.SetBool ("OnMove", false);
 			} else if (anim.GetCurrentAnimatorStateInfo (0).IsName (jumpBack)) {
+				player.audioSource.PlayOneShot (jumpSound);
 				player.moveDirection.y = jumpForce.y;
 				player.moveDirection.x = -jumpForce.x * player.direction;
 				anim.SetBool ("OnMove", false);
 			} else if (anim.GetCurrentAnimatorStateInfo (0).IsName (jump)) {
-				Debug.Log ("Executa");
+				player.audioSource.PlayOneShot (jumpSound);
 				player.moveDirection.y = jumpForce.y;
 				anim.SetBool ("OnMove", false);
 			}

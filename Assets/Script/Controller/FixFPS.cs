@@ -5,6 +5,7 @@ using UnityEngine;
 public class FixFPS : MonoBehaviour {
 
 	void Update () {
-		//Time.timeScale = (Time.renderedFrameCount / Time.time)/60;
+		//Player.time = (Time.renderedFrameCount / Time.time)/60;
+		//Debug.Log((Time.renderedFrameCount / Time.time)/60);
 	}
 }
